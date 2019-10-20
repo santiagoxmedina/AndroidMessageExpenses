@@ -18,7 +18,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/smsTexts"
         style="@android:style/Widget.DeviceDefault.Light.TextView"
         android:layout_width="352dp"
         android:layout_height="0dp"
