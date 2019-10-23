@@ -57,15 +57,40 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun getPurchaseDetails(message: String):String {
-        val regexValue = "\\$[\\d.,']+".toRegex()
-        val regexSite = " [\\w\\s]+ \\d{2}:\\d{2}".toRegex()
-
         var result = ""
-        result +="\nDetails"
-        var match = regexValue.find(message)
-        result += String.format("\n Valor: %s",match?.value)
-        match = regexSite.find(message)
-        result += String.format("\n Lugar: %s",match?.value)
+        result +="\nDetails:"
+        result += String.format("\n Lugar: %s",getPurchasePlace(message))
+        result += String.format("\n Valor: %s",getPurchasePrice(message))
         return result
+    }
+
+
+
+    companion object {
+        @JvmStatic
+        fun getPurchasePrice(message: String): Float {
+            val regexValue = "\\$[\\d.,']+".toRegex()
+            var match = regexValue.find(message)
+            var result:String? = match?.value
+            result =  result?.replace("$", "")
+            result =  result?.replace(".", "")
+            result =  result?.replace(",", ".")
+            return result?.toFloat() ?: 0f
+        }
+
+        fun getPurchasePlace(message: String): String {
+
+            val regexValue = "en .+ \\d\\d:".toRegex()
+            var match = regexValue.find(message)
+            var result:String
+            result = match?.value ?: "(Ninguno)"
+            val startRemoveRegexValue = "en\\h".toRegex()
+            result =  startRemoveRegexValue.replace(result, "")
+
+            val timeRemoveRegexValue = "\\h\\d\\d:".toRegex()
+            result =  timeRemoveRegexValue.replace(result, "")
+            return result
+        }
+
     }
 }
