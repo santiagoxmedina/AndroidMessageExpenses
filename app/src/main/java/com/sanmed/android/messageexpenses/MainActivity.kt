@@ -9,6 +9,8 @@ import android.net.Uri
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import android.text.method.ScrollingMovementMethod
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
@@ -61,6 +63,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         result +="\nDetails:"
         result += String.format("\n Lugar: %s",getPurchasePlace(message))
         result += String.format("\n Valor: %s",getPurchasePrice(message))
+        result += String.format("\n Fecha: %s",getPurchaseDate(message).toString())
+        result += String.format("\n Tipo de tarjeta: %s", getPurchaseCardType(message))
+        result += String.format("\n Numero de tarjeta: %s", getPurchaseCardNumber(message))
         return result
     }
 
@@ -90,6 +95,30 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             val timeRemoveRegexValue = "\\h\\d\\d:".toRegex()
             result =  timeRemoveRegexValue.replace(result, "")
             return result
+        }
+
+        fun getPurchaseDate(message: String): Date {
+            val regexValue = " \\d{1,2}:\\d{1,2}. \\d{1,2}/\\d{1,2}/\\d{1,4} ".toRegex();
+            var match = regexValue.find(message)
+            var result:String
+            result = match?.value ?: ""
+            result=result.replace(" ","")
+            result=result.replace("."," ")
+
+            val format = SimpleDateFormat("H:mm dd/MM/yyyy")
+            return format.parse(result)
+        }
+
+        fun getPurchaseCardNumber(message: String): String {
+            val regexValue = "\\*\\d{4,}".toRegex()
+            var match = regexValue.find(message)
+            return  match?.value ?: "*0000"
+        }
+
+        fun getPurchaseCardType(message: String): String {
+            val regexValue = "T\\.\\w{1,5}".toRegex()
+            var match = regexValue.find(message)
+            return  match?.value ?: "None"
         }
 
     }
