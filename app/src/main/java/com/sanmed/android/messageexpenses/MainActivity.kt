@@ -1,18 +1,18 @@
 package com.sanmed.android.messageexpenses
 
+import android.app.Application
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
 import android.net.Uri
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import android.text.method.ScrollingMovementMethod
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import androidx.lifecycle.ViewModelProviders
 import com.sanmed.android.messageexpenses.entities.Expense
-import kotlinx.android.synthetic.main.expenseitem.*
+import com.sanmed.android.messageexpenses.presenter.ExpensesViewModel
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -20,6 +20,7 @@ import java.util.*
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var viewadapter: ExpensesAdapter
+    private lateinit var model: ExpensesViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +31,16 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
         list_view_expenses.setHasFixedSize(true)
+        subpscriteToViewModel()
+
+    }
+
+    private fun subpscriteToViewModel(){
+        model = ViewModelProviders.of(this)[ExpensesViewModel::class.java]
+        val expensesObserver = androidx.lifecycle.Observer<List<Expense>>{
+            UpdateExpenses(it  as MutableList<Expense>)
+        }
+        model.expenses.observe(this,expensesObserver)
     }
 
     override fun onClick(v: View?) {
@@ -40,17 +51,21 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     "android.permission.READ_SMS"
                 ) == PackageManager.PERMISSION_GRANTED
             ) {
-                loadSMS()
+                val expenses = loadExpenses()
+                //UpdateExpenses(expenses)
+                model.expenses.value = expenses;
             } else {
                 ActivityCompat.requestPermissions(this, arrayOf("android.permission.READ_SMS"), 123)
             }
-
-
         }
     }
 
-    private fun loadSMS() {
-        val expenses = mutableListOf<Expense>()
+    private fun UpdateExpenses( expenses: MutableList<Expense>){
+        viewadapter.expenses = expenses
+    }
+
+    private fun loadExpenses(): MutableList<Expense> {
+        val smsExpenses = mutableListOf<Expense>()
         contentResolver?.query(Uri.parse("content://sms/inbox"), null, null, null, null)?.use {
             var msgData: String
             it.moveToFirst()
@@ -58,14 +73,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 msgData = it.getString(it.getColumnIndex("body"))
                 if (msgData.contains("Bancolombia le informa Compra por")) {
                     val expense = Expense()
-                    expense.place = getPurchasePlace(msgData)
-                    expense.price = getPurchasePrice(msgData)
-                    expense.date = getPurchaseDate(msgData)
-                    expenses.add(expense)
+                    expense.place = MainActivity.getPurchasePlace(msgData)
+                    expense.price = MainActivity.getPurchasePrice(msgData)
+                    expense.date = MainActivity.getPurchaseDate(msgData)
+                    smsExpenses.add(expense)
                 }
             } while (it.moveToNext())
         }
-        viewadapter.expenses = expenses
+       return smsExpenses
     }
 
     private fun getPurchaseDetails(message: String): String {
