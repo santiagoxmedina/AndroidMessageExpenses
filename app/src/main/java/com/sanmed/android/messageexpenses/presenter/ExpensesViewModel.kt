@@ -1,17 +1,19 @@
 package com.sanmed.android.messageexpenses.presenter
 
-import android.app.Application
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.sanmed.android.messageexpenses.entities.Expense
-import android.net.Uri
-import androidx.lifecycle.AndroidViewModel
-import com.sanmed.android.messageexpenses.MainActivity
+import com.sanmed.android.messageexpenses.repository.ExpensesRepository
+import javax.inject.Inject
 
 
-class ExpensesViewModel(application: Application) : AndroidViewModel(application) {
+class ExpensesViewModel@Inject constructor(
+    expensesRepository: ExpensesRepository
+)  : ViewModel() {
 
-    val expenses: MutableLiveData<List<Expense>> by lazy {
+   /* val expenses: MutableLiveData<List<Expense>> by lazy {
         MutableLiveData<List<Expense>>()
-    }
+    }*/
+
+    val expenses = expensesRepository.getExpenses()
 }

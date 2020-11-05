@@ -1,10 +1,11 @@
 package com.sanmed.android.messageexpenses
 
+import com.sanmed.android.messageexpenses.utilities.ExpensesTextUtility
 import org.junit.Assert.*
 import org.junit.Test
 import java.util.*
 
-class MainActivityTest {
+class ExpensesTextUtilityTest {
 
     var purchaseDebitMessage:String = "Bancolombia le informa Compra por \$11.390,00 en TERPEL MED PILARICA 12:59. 22/10/2019 T.Deb *0214. Inquietudes al 0345109095/018000931987.";
     var purchaseCreditMessage:String = "Bancolombia le informa Compra por \$11.390,00 en TERPEL MED PILARICA 12:59. 22/10/2019 T.Cred *0214. Inquietudes al 0345109095/018000931987.";
@@ -18,7 +19,7 @@ class MainActivityTest {
         assertEquals(
             "Purchase prices are not equal",
             11390f,
-            MainActivity.getPurchasePrice(purchaseDebitMessage)
+            ExpensesTextUtility.getPurchasePrice(purchaseDebitMessage)
         )
     }
 
@@ -28,7 +29,7 @@ class MainActivityTest {
         assertEquals(
             "Purchase Place are not equal",
             "TERPEL MED PILARICA",
-            MainActivity.getPurchasePlace(purchaseDebitMessage)
+            ExpensesTextUtility.getPurchasePlace(purchaseDebitMessage)
         )
     }
 
@@ -41,7 +42,7 @@ class MainActivityTest {
         cal.set(Calendar.HOUR_OF_DAY, 8)
         cal.set(Calendar.MINUTE, 59)
         cal.set(Calendar.SECOND, 0)
-        assertEquals("Purchase Date are not equal", cal.time.toString(), MainActivity.getPurchaseDate(purchaseDateUnder12Message).toString())
+        assertEquals("Purchase Date are not equal", cal.time.toString(), ExpensesTextUtility.getPurchaseDate(purchaseDateUnder12Message).toString())
     }
 
     @Test
@@ -53,7 +54,7 @@ class MainActivityTest {
         cal.set(Calendar.HOUR_OF_DAY, 15)
         cal.set(Calendar.MINUTE, 59)
         cal.set(Calendar.SECOND, 0)
-        assertEquals("Purchase Date are not equal", cal.time.toString(), MainActivity.getPurchaseDate(purchaseDateOver12Message).toString())
+        assertEquals("Purchase Date are not equal", cal.time.toString(), ExpensesTextUtility.getPurchaseDate(purchaseDateOver12Message).toString())
     }
 
     @Test
@@ -65,14 +66,14 @@ class MainActivityTest {
         cal.set(Calendar.HOUR_OF_DAY, 12)
         cal.set(Calendar.MINUTE, 59)
         cal.set(Calendar.SECOND, 0)
-        assertEquals("Purchase Date are not equal", cal.time.toString(), MainActivity.getPurchaseDate(purchaseDateSame12tMessage).toString())
+        assertEquals("Purchase Date are not equal", cal.time.toString(), ExpensesTextUtility.getPurchaseDate(purchaseDateSame12tMessage).toString())
     }
 
     @Test
     fun getPurchaseCardNumber() {
         assertEquals(
             "Purchase Date are not equal","*0214",
-            MainActivity.getPurchaseCardNumber(purchaseDebitMessage)
+            ExpensesTextUtility.getPurchaseCardNumber(purchaseDebitMessage)
         )
     }
 
@@ -80,7 +81,7 @@ class MainActivityTest {
     fun getPurchaseCardTypeDebit() {
         assertEquals(
             "Purchase Date are not equal","T.Deb",
-            MainActivity.getPurchaseCardType(purchaseDebitMessage)
+            ExpensesTextUtility.getPurchaseCardType(purchaseDebitMessage)
         )
     }
 
@@ -88,7 +89,7 @@ class MainActivityTest {
     fun getPurchaseCardTypeCredit() {
         assertEquals(
             "Purchase Date are not equal","T.Cred",
-            MainActivity.getPurchaseCardType(purchaseCreditMessage)
+            ExpensesTextUtility.getPurchaseCardType(purchaseCreditMessage)
         )
     }
 }

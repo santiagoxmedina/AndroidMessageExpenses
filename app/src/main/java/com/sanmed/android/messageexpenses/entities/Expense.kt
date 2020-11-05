@@ -1,10 +1,16 @@
 package com.sanmed.android.messageexpenses.entities
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import java.util.*
 
-class Expense {
-    var place:String = "No place"
-    var price = 0f
-    var date :Date = Date()
+@Entity
+data class Expense(
+    @PrimaryKey
+    val id:String,
+    val place:String,
+    val price: Float,
+    val date :Date)
+    {
 
 }
