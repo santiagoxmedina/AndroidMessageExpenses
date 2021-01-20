@@ -1,9 +1,7 @@
-package com.sanmed.android.messageexpenses.presenter
+package com.sanmed.android.messageexpenses.viewmodel
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.sanmed.android.messageexpenses.entities.Expense
-import com.sanmed.android.messageexpenses.repository.ExpensesRepository
+import com.sanmed.android.messageexpenses.model.repository.ExpensesRepository
 import javax.inject.Inject
 
 

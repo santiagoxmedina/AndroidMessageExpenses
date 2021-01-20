@@ -1,9 +1,12 @@
-package com.sanmed.android.messageexpenses
+package com.sanmed.android.messageexpenses.view
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.sanmed.android.messageexpenses.entities.Expense
+import com.sanmed.android.messageexpenses.R
+import com.sanmed.android.messageexpenses.databinding.ExpenseitemBinding
+import com.sanmed.android.messageexpenses.model.entities.Expense
 
 class ExpensesAdapter : RecyclerView.Adapter<ExpensesViewHolder>() {
 
@@ -15,8 +18,9 @@ class ExpensesAdapter : RecyclerView.Adapter<ExpensesViewHolder>() {
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExpensesViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.expenseitem, parent, false)
-        return ExpensesViewHolder(view)
+        val binding = DataBindingUtil.inflate<ExpenseitemBinding>(LayoutInflater.from(parent.context),
+            R.layout.expenseitem, parent, false)
+        return ExpensesViewHolder(binding)
     }
 
     override fun getItemCount(): Int {

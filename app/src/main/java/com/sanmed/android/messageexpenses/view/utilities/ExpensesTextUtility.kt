@@ -1,4 +1,4 @@
-package com.sanmed.android.messageexpenses.utilities
+package com.sanmed.android.messageexpenses.view.utilities
 
 import java.text.SimpleDateFormat
 import java.util.*

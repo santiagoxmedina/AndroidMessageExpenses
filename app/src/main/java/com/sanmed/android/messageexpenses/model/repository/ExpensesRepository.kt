@@ -1,9 +1,8 @@
-package com.sanmed.android.messageexpenses.repository
+package com.sanmed.android.messageexpenses.model.repository
 
 import androidx.lifecycle.LiveData
-import com.sanmed.android.messageexpenses.entities.Expense
-import com.sanmed.android.messageexpenses.db.ExpensesDAO
-import java.util.concurrent.TimeUnit
+import com.sanmed.android.messageexpenses.model.entities.Expense
+import com.sanmed.android.messageexpenses.model.db.ExpensesDAO
 import javax.inject.Inject
 
 class ExpensesRepository@Inject constructor(

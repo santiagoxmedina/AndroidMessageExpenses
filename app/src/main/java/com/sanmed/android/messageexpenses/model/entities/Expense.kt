@@ -1,4 +1,4 @@
-package com.sanmed.android.messageexpenses.entities
+package com.sanmed.android.messageexpenses.model.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

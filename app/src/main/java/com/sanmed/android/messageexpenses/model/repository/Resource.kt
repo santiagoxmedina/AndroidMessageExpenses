@@ -1,8 +1,8 @@
-package com.sanmed.android.messageexpenses.repository
+package com.sanmed.android.messageexpenses.model.repository
 
-import com.sanmed.android.messageexpenses.repository.Status.ERROR
-import com.sanmed.android.messageexpenses.repository.Status.LOADING
-import com.sanmed.android.messageexpenses.repository.Status.SUCCESS
+import com.sanmed.android.messageexpenses.model.repository.Status.ERROR
+import com.sanmed.android.messageexpenses.model.repository.Status.LOADING
+import com.sanmed.android.messageexpenses.model.repository.Status.SUCCESS
 
 data class Resource<out T>(val status: Status, val data: T?, val message: String?) {
     companion object {

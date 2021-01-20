@@ -1,34 +1,40 @@
-package com.sanmed.android.messageexpenses
+package com.sanmed.android.messageexpenses.view
 
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import kotlinx.android.synthetic.main.activity_main.*
 import android.net.Uri
+import android.view.LayoutInflater
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.ViewModelProviders
-import com.sanmed.android.messageexpenses.entities.Expense
-import com.sanmed.android.messageexpenses.presenter.ExpensesViewModel
-import com.sanmed.android.messageexpenses.utilities.ExpensesTextUtility
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
+import com.sanmed.android.messageexpenses.R
+import com.sanmed.android.messageexpenses.databinding.ActivityMainBinding
+import com.sanmed.android.messageexpenses.model.entities.Expense
+import com.sanmed.android.messageexpenses.viewmodel.ExpensesViewModel
+import com.sanmed.android.messageexpenses.view.utilities.ExpensesTextUtility
 
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var viewadapter: ExpensesAdapter
     private lateinit var model: ExpensesViewModel
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         viewadapter = ExpensesAdapter()
-        list_view_expenses.adapter = viewadapter
+        binding = DataBindingUtil.inflate(LayoutInflater.from(application),
+            R.layout.activity_main,null,false)
+        binding.listViewExpenses.adapter = viewadapter
         subscribeToViewModel()
     }
 
     private fun subscribeToViewModel(){
-        model = ViewModelProviders.of(this)[ExpensesViewModel::class.java]
+        model = ViewModelProvider(this).get(ExpensesViewModel::class.java)
         val expensesObserver = androidx.lifecycle.Observer<List<Expense>>{
             updateExpenses(it as MutableList<Expense>)
         }

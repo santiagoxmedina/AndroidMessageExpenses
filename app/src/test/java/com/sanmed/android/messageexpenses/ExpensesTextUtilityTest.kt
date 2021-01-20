@@ -1,6 +1,6 @@
 package com.sanmed.android.messageexpenses
 
-import com.sanmed.android.messageexpenses.utilities.ExpensesTextUtility
+import com.sanmed.android.messageexpenses.view.utilities.ExpensesTextUtility
 import org.junit.Assert.*
 import org.junit.Test
 import java.util.*
