@@ -17,50 +17,43 @@ import com.sanmed.android.messageexpenses.viewmodel.ExpensesViewModel
 import com.sanmed.android.messageexpenses.view.utilities.ExpensesTextUtility
 
 
-class MainActivity : AppCompatActivity(), View.OnClickListener {
+class MainActivity : AppCompatActivity() {
 
-    private lateinit var viewadapter: ExpensesAdapter
-    private lateinit var model: ExpensesViewModel
-    private lateinit var binding: ActivityMainBinding
+    //private lateinit var model: ExpensesViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        viewadapter = ExpensesAdapter()
-        binding = DataBindingUtil.inflate(LayoutInflater.from(application),
-            R.layout.activity_main,null,false)
-        binding.listViewExpenses.adapter = viewadapter
-        subscribeToViewModel()
     }
 
     private fun subscribeToViewModel(){
-        model = ViewModelProvider(this).get(ExpensesViewModel::class.java)
-        val expensesObserver = androidx.lifecycle.Observer<List<Expense>>{
-            updateExpenses(it as MutableList<Expense>)
-        }
-        model.expenses.observe(this,expensesObserver)
+        //model = ViewModelProvider(this).get(ExpensesViewModel::class.java)
+//        val expensesObserver = androidx.lifecycle.Observer<List<Expense>>{
+//            updateExpenses(it as MutableList<Expense>)
+//        }
+        //model.expenses.observe(this,expensesObserver)
     }
 
-    override fun onClick(v: View?) {
-        if (v?.id == R.id.btnLoadSMS) {
-
-            if (ContextCompat.checkSelfPermission(
-                    baseContext,
-                    "android.permission.READ_SMS"
-                ) == PackageManager.PERMISSION_GRANTED
-            ) {
-               // val expenses = loadExpenses()
-                //UpdateExpenses(expenses)
-
-            } else {
-                ActivityCompat.requestPermissions(this, arrayOf("android.permission.READ_SMS"), 123)
-            }
-        }
-    }
-
-    private fun updateExpenses(expenses: MutableList<Expense>){
-        viewadapter.expenses = expenses
-    }
+//    override fun onClick(v: View?) {
+//        if (v?.id == R.id.btnLoadSMS) {
+//
+//            if (ContextCompat.checkSelfPermission(
+//                    baseContext,
+//                    "android.permission.READ_SMS"
+//                ) == PackageManager.PERMISSION_GRANTED
+//            ) {
+//                val expenses = loadExpenses()
+//                updateExpenses(expenses)
+//
+//            } else {
+//                ActivityCompat.requestPermissions(this, arrayOf("android.permission.READ_SMS"), 123)
+//            }
+//        }
+//    }
+//
+//    private fun updateExpenses(expenses: MutableList<Expense>){
+//        viewadapter.expenses = expenses
+//    }
 
     private fun loadExpenses(): MutableList<Expense> {
         val smsExpenses = mutableListOf<Expense>()
