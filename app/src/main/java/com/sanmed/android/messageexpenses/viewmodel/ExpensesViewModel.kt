@@ -1,17 +1,29 @@
 package com.sanmed.android.messageexpenses.viewmodel
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.sanmed.android.messageexpenses.model.repository.ExpensesRepository
-import javax.inject.Inject
+import com.sanmed.android.messageexpenses.view.ExpenseView
+import com.sanmed.android.messageexpenses.view.IExpense
+
+class ExpensesViewModel:ViewModel() {
+
+    private val _expenses = MutableLiveData<List<IExpense?>>()
+    val expenses: LiveData<List<IExpense?>>
+    get() = _expenses
 
 
-class ExpensesViewModel@Inject constructor(
-    expensesRepository: ExpensesRepository
-)  : ViewModel() {
+    fun onAddExpense(){
 
-   /* val expenses: MutableLiveData<List<Expense>> by lazy {
-        MutableLiveData<List<Expense>>()
-    }*/
+        val list = mutableListOf<IExpense?>()
+        _expenses.value?.let { list.addAll(it) }
+        list.add(getNewExpenseTest(list.size))
+        _expenses.value = list
 
-    val expenses = expensesRepository.getExpenses()
+    }
+
+    private fun getNewExpenseTest(index:Int): IExpense {
+        return ExpenseView(1000,"SANMED",0.3f,0,index);
+    }
+
 }

@@ -2,17 +2,20 @@ package com.sanmed.android.messageexpenses.view
 
 import androidx.recyclerview.widget.RecyclerView
 import com.sanmed.android.messageexpenses.databinding.ExpenseitemBinding
+import com.sanmed.android.messageexpenses.databinding.ViewExpenseBinding
 import com.sanmed.android.messageexpenses.model.entities.Expense
 
-class ExpensesViewHolder(itemView: ExpenseitemBinding) : RecyclerView.ViewHolder(itemView.root) {
+class ExpensesViewHolder(itemView: ViewExpenseBinding) : RecyclerView.ViewHolder(itemView.root) {
 
 
-    private val mExpenseItemBinding: ExpenseitemBinding = itemView;
+    private val mExpenseItemBinding: ViewExpenseBinding = itemView;
 
 
-    fun bind(expense: Expense) {
-        mExpenseItemBinding.textItemDate.text = expense.date.toString()
-        mExpenseItemBinding.textItemPlace.text = expense.place
-        mExpenseItemBinding.textItemPrice.text = expense.price.toString()
+    fun bind(expense: IExpense?) {
+        if(expense!=null){
+            mExpenseItemBinding.expense = expense;
+            mExpenseItemBinding.executePendingBindings()
+        }
     }
+
 }

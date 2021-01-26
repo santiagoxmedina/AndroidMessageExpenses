@@ -1,14 +1,16 @@
-package com.sanmed.android.messageexpenses
+package com.sanmed.android.messageexpenses.view
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import com.sanmed.android.messageexpenses.R
 import com.sanmed.android.messageexpenses.databinding.FragmentSummaryBinding
+import com.sanmed.android.messageexpenses.viewmodel.SummaryViewModel
 
 class SummaryFragment : Fragment() {
 
@@ -20,7 +22,7 @@ class SummaryFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_summary,container,false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_summary,container,false)
         binding.lifecycleOwner = this
         viewModel = ViewModelProvider(this).get(SummaryViewModel::class.java)
         binding.viewModel = viewModel

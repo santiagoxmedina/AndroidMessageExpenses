@@ -2,4 +2,5 @@
     <string name="app_name">MessageExpenses</string>
     <string name="LoadSMSButton">Load SMS</string>
     <string name="expenses">Expenses</string>
+    <string name="add_expense">add expense</string>
 </resources>

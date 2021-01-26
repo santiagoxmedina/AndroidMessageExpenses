@@ -1,19 +1,10 @@
 package com.sanmed.android.messageexpenses.view
 
-import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.net.Uri
-import android.view.LayoutInflater
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
 import com.sanmed.android.messageexpenses.R
-import com.sanmed.android.messageexpenses.databinding.ActivityMainBinding
 import com.sanmed.android.messageexpenses.model.entities.Expense
-import com.sanmed.android.messageexpenses.viewmodel.ExpensesViewModel
 import com.sanmed.android.messageexpenses.view.utilities.ExpensesTextUtility
 
 

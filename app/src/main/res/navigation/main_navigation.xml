@@ -7,12 +7,12 @@
 
     <fragment
         android:id="@+id/expensesFragment"
-        android:name="com.sanmed.android.messageexpenses.ExpensesFragment"
+        android:name="com.sanmed.android.messageexpenses.view.ExpensesFragment"
         android:label="fragment_expenses"
         tools:layout="@layout/fragment_expenses" />
     <fragment
         android:id="@+id/summaryFragment"
-        android:name="com.sanmed.android.messageexpenses.SummaryFragment"
+        android:name="com.sanmed.android.messageexpenses.view.SummaryFragment"
         android:label="fragment_summary"
         tools:layout="@layout/fragment_summary" >
         <action

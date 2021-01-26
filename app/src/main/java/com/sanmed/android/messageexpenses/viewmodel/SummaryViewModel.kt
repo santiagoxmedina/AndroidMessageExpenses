@@ -1,4 +1,4 @@
-package com.sanmed.android.messageexpenses
+package com.sanmed.android.messageexpenses.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
