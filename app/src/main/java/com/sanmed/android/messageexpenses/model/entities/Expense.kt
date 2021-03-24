@@ -10,7 +10,7 @@ data class Expense(
     val id:String,
     val place:String,
     val price: Float,
-    val date :Date)
+    val date :String)
     {
 
 }

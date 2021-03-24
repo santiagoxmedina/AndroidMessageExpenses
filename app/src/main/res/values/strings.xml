@@ -3,4 +3,8 @@
     <string name="LoadSMSButton">Load SMS</string>
     <string name="expenses">Expenses</string>
     <string name="add_expense">add expense</string>
+    <string name="name">Name</string>
+    <string name="value">Amount</string>
+    <string name="cancel">Cancel</string>
+    <string name="accept">Accept</string>
 </resources>

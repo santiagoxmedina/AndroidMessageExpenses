@@ -6,8 +6,10 @@ import android.net.Uri
 import com.sanmed.android.messageexpenses.R
 import com.sanmed.android.messageexpenses.model.entities.Expense
 import com.sanmed.android.messageexpenses.view.utilities.ExpensesTextUtility
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     //private lateinit var model: ExpensesViewModel
@@ -58,7 +60,7 @@ class MainActivity : AppCompatActivity() {
                     val price = ExpensesTextUtility.getPurchasePrice(msgData)
                     val date = ExpensesTextUtility.getPurchaseDate(msgData)
                     val id =  date.toString()+price
-                    val expense = Expense(id,place,price,date)
+                    val expense = Expense(id,place,price,date.toString())
 
                     smsExpenses.add(expense)
                 }
