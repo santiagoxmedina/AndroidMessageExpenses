@@ -2,7 +2,6 @@ package com.sanmed.android.messageexpenses.view.dialog
 
 import android.app.Dialog
 import android.content.Context
-import com.sanmed.android.messageexpenses.view.add_expense.IAddExpenseView
 
 interface IDialogHandler <T> {
     fun getContext(): Context

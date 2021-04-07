@@ -4,7 +4,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.sanmed.android.messageexpenses.view.add_expense.IAddExpenseView" />
+            type="com.sanmed.android.messageexpenses.view.add_category_expense.IAddCategoryExpenseView" />
     </data>
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
@@ -44,7 +44,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
-                    android:inputType="text"
+                    android:inputType="textCapWords"
                     android:text="@={viewModel.getNameText()}"
                     android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>

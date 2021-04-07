@@ -1,4 +1,4 @@
-package com.sanmed.android.messageexpenses.view
+package com.sanmed.android.messageexpenses.view.categories_expenses
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,28 +7,29 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import com.sanmed.android.messageexpenses.R
-import com.sanmed.android.messageexpenses.databinding.FragmentExpensesBinding
+import com.sanmed.android.messageexpenses.databinding.FragmentCategoriesExpensesBinding
 import com.sanmed.android.messageexpenses.model.helpers.DialogHelper
-import com.sanmed.android.messageexpenses.view.add_expense.AddExpenseDialogFragmentHandler
-import com.sanmed.android.messageexpenses.view.dialog.DialogFragmentHandler
-import com.sanmed.android.messageexpenses.viewmodel.ExpensesViewModel
+import com.sanmed.android.messageexpenses.view.DiffExpense
+import com.sanmed.android.messageexpenses.view.ExpensesAdapter
+import com.sanmed.android.messageexpenses.view.ICategoryExpenseView
+import com.sanmed.android.messageexpenses.view.add_category_expense.AddCategoryExpenseDialogFragmentHandler
+import com.sanmed.android.messageexpenses.viewmodel.categories_expenses.CategoriesExpensesViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ExpensesFragment : Fragment() {
-    val viewModel  by viewModels<ExpensesViewModel>()
-    private lateinit var binding : FragmentExpensesBinding
+class CategoriesExpensesFragment : Fragment() {
+    val viewModel  by viewModels<CategoriesExpensesViewModel>()
+    private lateinit var binding : FragmentCategoriesExpensesBinding
     private lateinit var adapter : ExpensesAdapter
-    private lateinit var addDialog:AddExpenseDialogFragmentHandler
+    private lateinit var addCategoryDialog:AddCategoryExpenseDialogFragmentHandler
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_expenses,container,false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_categories_expenses,container,false)
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
         return binding.root
@@ -38,12 +39,12 @@ class ExpensesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         adapter = ExpensesAdapter( DiffExpense())
         binding.listExpensesRecyclerView.adapter = adapter
-        addDialog = AddExpenseDialogFragmentHandler(this,viewModel.getAddExpenseViewModel())
+        addCategoryDialog = AddCategoryExpenseDialogFragmentHandler(this,viewModel.getAddExpenseViewModel())
         initSubscribers();
     }
 
     private fun initSubscribers() {
-        viewModel.expenses.observe(viewLifecycleOwner,this::onExpensesChanged)
+        viewModel.categoriesExpenses.observe(viewLifecycleOwner,this::onExpensesChanged)
         viewModel.addExpense.observe(viewLifecycleOwner,this::onAddExpense)
     }
 
@@ -55,10 +56,10 @@ class ExpensesFragment : Fragment() {
     }
 
     private fun showAddExpenseDialog() {
-        DialogHelper.showAddExpenseDialog(addDialog)
+        DialogHelper.showAddExpenseDialog(addCategoryDialog)
     }
 
-    private fun onExpensesChanged( expenses:List<IExpense?>) {
-        adapter.submitList(expenses)
+    private fun onExpensesChanged(expens:List<ICategoryExpenseView?>) {
+        adapter.submitList(expens)
     }
 }

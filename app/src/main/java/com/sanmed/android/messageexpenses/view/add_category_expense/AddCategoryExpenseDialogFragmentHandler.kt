@@ -1,9 +1,9 @@
-package com.sanmed.android.messageexpenses.view.add_expense
+package com.sanmed.android.messageexpenses.view.add_category_expense
 
 import androidx.fragment.app.Fragment
 import com.sanmed.android.messageexpenses.view.dialog.DialogFragmentHandler
 
-class AddExpenseDialogFragmentHandler(fragment: Fragment, private val viewModel:IAddExpenseViewModel) : DialogFragmentHandler<IAddExpenseViewModel>(fragment,viewModel) {
+class AddCategoryExpenseDialogFragmentHandler(fragment: Fragment, private val viewModel:IAddCategoryExpenseViewModel) : DialogFragmentHandler<IAddCategoryExpenseViewModel>(fragment,viewModel) {
 
     init {
         viewModel.getOnDisMiss().observe(fragment.viewLifecycleOwner,this::onDismiss)

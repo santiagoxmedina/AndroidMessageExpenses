@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/expensesFragment"
-        android:name="com.sanmed.android.messageexpenses.view.ExpensesFragment"
+        android:name="com.sanmed.android.messageexpenses.view.categories_expenses.CategoriesExpensesFragment"
         android:label="fragment_expenses"
-        tools:layout="@layout/fragment_expenses" />
+        tools:layout="@layout/fragment_categories_expenses" />
     <fragment
         android:id="@+id/summaryFragment"
         android:name="com.sanmed.android.messageexpenses.view.SummaryFragment"

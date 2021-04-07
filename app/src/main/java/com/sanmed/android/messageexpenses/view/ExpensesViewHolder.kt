@@ -1,9 +1,7 @@
 package com.sanmed.android.messageexpenses.view
 
 import androidx.recyclerview.widget.RecyclerView
-import com.sanmed.android.messageexpenses.databinding.ExpenseitemBinding
 import com.sanmed.android.messageexpenses.databinding.ViewExpenseBinding
-import com.sanmed.android.messageexpenses.model.entities.Expense
 
 class ExpensesViewHolder(itemView: ViewExpenseBinding) : RecyclerView.ViewHolder(itemView.root) {
 
@@ -11,9 +9,9 @@ class ExpensesViewHolder(itemView: ViewExpenseBinding) : RecyclerView.ViewHolder
     private val mExpenseItemBinding: ViewExpenseBinding = itemView;
 
 
-    fun bind(expense: IExpense?) {
-        if(expense!=null){
-            mExpenseItemBinding.expense = expense;
+    fun bind(categoryExpenseView: ICategoryExpenseView?) {
+        if(categoryExpenseView!=null){
+            mExpenseItemBinding.expense = categoryExpenseView;
             mExpenseItemBinding.executePendingBindings()
         }
     }

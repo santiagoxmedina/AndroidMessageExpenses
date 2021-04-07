@@ -4,13 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.RecyclerView
 import com.sanmed.android.messageexpenses.R
-import com.sanmed.android.messageexpenses.databinding.ExpenseitemBinding
 import com.sanmed.android.messageexpenses.databinding.ViewExpenseBinding
-import com.sanmed.android.messageexpenses.model.entities.Expense
 
-class ExpensesAdapter(diff:DiffExpense) : ListAdapter<IExpense?,ExpensesViewHolder>(diff) {
+class ExpensesAdapter(diff:DiffExpense) : ListAdapter<ICategoryExpenseView?,ExpensesViewHolder>(diff) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExpensesViewHolder {

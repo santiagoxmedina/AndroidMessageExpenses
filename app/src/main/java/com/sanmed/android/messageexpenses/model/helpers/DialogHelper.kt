@@ -8,14 +8,14 @@ import android.view.View
 import androidx.databinding.DataBindingUtil
 import com.sanmed.android.messageexpenses.R
 import com.sanmed.android.messageexpenses.databinding.ViewAddExpenseBinding
-import com.sanmed.android.messageexpenses.view.add_expense.IAddExpenseView
+import com.sanmed.android.messageexpenses.view.add_category_expense.IAddCategoryExpenseView
 import com.sanmed.android.messageexpenses.view.dialog.IDialogHandler
 
 
 class DialogHelper {
 
     companion object{
-        fun <T : IAddExpenseView> showAddExpenseDialog(dialogHandler: IDialogHandler<T>){
+        fun <T : IAddCategoryExpenseView> showAddExpenseDialog(dialogHandler: IDialogHandler<T>){
             if(dialogHandler.getDialog() == null){
                 val inflater: LayoutInflater = LayoutInflater.from(dialogHandler.getContext())
                 val binding:ViewAddExpenseBinding = DataBindingUtil.inflate(inflater,R.layout.view_add_expense,null,false)

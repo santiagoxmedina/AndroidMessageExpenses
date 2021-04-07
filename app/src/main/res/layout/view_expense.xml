@@ -7,7 +7,7 @@
 
         <variable
             name="expense"
-            type="com.sanmed.android.messageexpenses.view.IExpense" />
+            type="com.sanmed.android.messageexpenses.view.ICategoryExpenseView" />
     </data>
 
     <com.google.android.material.card.MaterialCardView

@@ -1,8 +1,8 @@
-package com.sanmed.android.messageexpenses.view.add_expense
+package com.sanmed.android.messageexpenses.view.add_category_expense
 
 import androidx.lifecycle.MutableLiveData
 
-interface IAddExpenseView {
+interface IAddCategoryExpenseView {
     fun onCancel()
     fun onAccept()
     fun getNameText():MutableLiveData<String>

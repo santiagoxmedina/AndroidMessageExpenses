@@ -2,14 +2,14 @@ package com.sanmed.android.messageexpenses.view
 
 import java.text.NumberFormat
 
-class ExpenseView(private val _amount: Int,private val _name: String,private val _percentage: Float,private val _type: Int,private val _id: Int):IExpense {
+class CategoryExpenseView(private val _id: String,private val _name: String,private val _amount: Float,private val _percentage: Float, private val _type: Int ):ICategoryExpenseView {
 
     companion object{
         private  val percentageFormat = NumberFormat.getPercentInstance()
         private  val currencyFormat = NumberFormat.getCurrencyInstance()
     }
 
-    override fun getAmount(): Int {
+    override fun getAmount(): Float {
         return _amount
     }
 
@@ -33,7 +33,7 @@ class ExpenseView(private val _amount: Int,private val _name: String,private val
         return  _type
     }
 
-    override fun getId(): Int {
+    override fun getId(): String {
         return  _id
     }
 }

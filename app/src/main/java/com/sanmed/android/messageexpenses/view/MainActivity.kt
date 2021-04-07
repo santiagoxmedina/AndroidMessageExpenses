@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.net.Uri
 import com.sanmed.android.messageexpenses.R
-import com.sanmed.android.messageexpenses.model.entities.Expense
+import com.sanmed.android.messageexpenses.model.entities.CategoryExpenseEntity
 import com.sanmed.android.messageexpenses.view.utilities.ExpensesTextUtility
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -48,24 +48,24 @@ class MainActivity : AppCompatActivity() {
 //        viewadapter.expenses = expenses
 //    }
 
-    private fun loadExpenses(): MutableList<Expense> {
-        val smsExpenses = mutableListOf<Expense>()
-        contentResolver?.query(Uri.parse("content://sms/inbox"), null, null, null, null)?.use {
-            var msgData: String
-            it.moveToFirst()
-            do {
-                msgData = it.getString(it.getColumnIndex("body"))
-                if (msgData.contains("Bancolombia le informa Compra por")) {
-                    val place = ExpensesTextUtility.getPurchasePlace(msgData)
-                    val price = ExpensesTextUtility.getPurchasePrice(msgData)
-                    val date = ExpensesTextUtility.getPurchaseDate(msgData)
-                    val id =  date.toString()+price
-                    val expense = Expense(id,place,price,date.toString())
-
-                    smsExpenses.add(expense)
-                }
-            } while (it.moveToNext())
-        }
-       return smsExpenses
-    }
+//    private fun loadExpenses(): MutableList<CategoryExpenseEntity> {
+//        val smsExpenses = mutableListOf<CategoryExpenseEntity>()
+//        contentResolver?.query(Uri.parse("content://sms/inbox"), null, null, null, null)?.use {
+//            var msgData: String
+//            it.moveToFirst()
+//            do {
+//                msgData = it.getString(it.getColumnIndex("body"))
+//                if (msgData.contains("Bancolombia le informa Compra por")) {
+//                    val place = ExpensesTextUtility.getPurchasePlace(msgData)
+//                    val price = ExpensesTextUtility.getPurchasePrice(msgData)
+//                    val date = ExpensesTextUtility.getPurchaseDate(msgData)
+//                    val id =  date.toString()+price
+//                    val expense = CategoryExpenseEntity(id,place,price,date.toString())
+//
+//                    smsExpenses.add(expense)
+//                }
+//            } while (it.moveToNext())
+//        }
+//       return smsExpenses
+//    }
 }
