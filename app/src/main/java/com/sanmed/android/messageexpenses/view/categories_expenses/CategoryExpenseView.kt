@@ -1,8 +1,10 @@
-package com.sanmed.android.messageexpenses.view
+package com.sanmed.android.messageexpenses.view.categories_expenses
 
+import com.sanmed.android.messageexpenses.view.ICategoryExpenseView
 import java.text.NumberFormat
 
-class CategoryExpenseView(private val _id: String,private val _name: String,private val _amount: Float,private val _percentage: Float, private val _type: Int ):ICategoryExpenseView {
+class CategoryExpenseView(private val _id: String,private val _name: String,private val _amount: Float,private val _percentage: Float, private val _type: Int ):
+    ICategoryExpenseView {
 
     companion object{
         private  val percentageFormat = NumberFormat.getPercentInstance()

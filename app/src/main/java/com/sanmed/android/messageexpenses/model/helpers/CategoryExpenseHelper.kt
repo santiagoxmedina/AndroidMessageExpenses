@@ -1,7 +1,7 @@
 package com.sanmed.android.messageexpenses.model.helpers
 
 import com.sanmed.android.messageexpenses.model.entities.CategoryExpenseEntity
-import com.sanmed.android.messageexpenses.view.CategoryExpenseView
+import com.sanmed.android.messageexpenses.view.categories_expenses.CategoryExpenseView
 import com.sanmed.android.messageexpenses.view.ICategoryExpenseView
 
 class CategoryExpenseHelper {

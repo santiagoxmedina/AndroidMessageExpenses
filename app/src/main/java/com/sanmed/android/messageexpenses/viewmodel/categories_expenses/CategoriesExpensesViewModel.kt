@@ -7,6 +7,8 @@ import com.sanmed.android.messageexpenses.model.repository.ICategoryExpensesRepo
 import com.sanmed.android.messageexpenses.view.ICategoryExpenseView
 import com.sanmed.android.messageexpenses.view.add_category_expense.IAddCategoryExpenseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -29,6 +31,16 @@ class CategoriesExpensesViewModel @Inject constructor(private val _addExpenseVie
 
     fun getAddExpenseViewModel(): IAddCategoryExpenseViewModel {
         return _addExpenseViewModel
+    }
+
+    fun onEdit(categoryExpenseView: ICategoryExpenseView){
+
+    }
+
+    fun onDelete(categoryExpenseView: ICategoryExpenseView){
+        GlobalScope.launch {
+            categoryExpensesRepository.delete(categoryExpenseView)
+        }
     }
 
 }

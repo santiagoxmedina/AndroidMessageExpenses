@@ -8,4 +8,6 @@
     <string name="cancel">Cancel</string>
     <string name="accept">Accept</string>
     <string name="category">Categories</string>
+    <string name="delete">delete</string>
+    <string name="edit">Edit</string>
 </resources>

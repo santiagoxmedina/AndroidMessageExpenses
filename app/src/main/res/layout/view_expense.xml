@@ -8,6 +8,9 @@
         <variable
             name="expense"
             type="com.sanmed.android.messageexpenses.view.ICategoryExpenseView" />
+        <variable
+            name="onEdit"
+            type="com.sanmed.android.messageexpenses.model.action.IAction&lt;com.sanmed.android.messageexpenses.view.ICategoryExpenseView,android.view.View>" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -26,6 +29,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@{expense.name}"
+                android:onClick="@{(x)->onEdit.onAction(expense,x)}"
                 app:drawableEndCompat="@android:drawable/ic_menu_edit"
                 tools:text="EPM" />
 

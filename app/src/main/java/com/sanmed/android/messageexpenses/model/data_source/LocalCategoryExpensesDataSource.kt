@@ -20,4 +20,8 @@ class LocalCategoryExpensesDataSource @Inject constructor(private val categoryEx
     override fun getCategoriesExpenses(): LiveData<List<ICategoryExpenseView?>> {
         return Transformations.map(allTeams.asLiveData(),CategoryExpenseHelper::getListCategoryExpenseEntityFromListCategoryExpenseView)
     }
+
+    override fun delete(categoryExpenseView: ICategoryExpenseView) {
+        categoryExpensesDAO.delete(CategoryExpenseHelper.getCategoryExpenseEntityFromCategoryExpenseView(categoryExpenseView))
+    }
 }

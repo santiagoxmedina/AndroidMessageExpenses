@@ -13,4 +13,8 @@ class CategoryExpensesRepository @Inject constructor(private val categoryExpense
     override fun getCategoriesExpenses(): LiveData<List<ICategoryExpenseView?>> {
         return categoryExpensesDataSource.getCategoriesExpenses()
     }
+
+    override suspend fun delete(categoryExpenseView: ICategoryExpenseView) {
+        categoryExpensesDataSource.delete(categoryExpenseView)
+    }
 }
