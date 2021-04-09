@@ -17,4 +17,8 @@ class CategoryExpensesRepository @Inject constructor(private val categoryExpense
     override suspend fun delete(categoryExpenseView: ICategoryExpenseView) {
         categoryExpensesDataSource.delete(categoryExpenseView)
     }
+
+    override suspend fun editCategory(categoryExpenseView: ICategoryExpenseView) {
+        categoryExpensesDataSource.editCategory(categoryExpenseView)
+    }
 }

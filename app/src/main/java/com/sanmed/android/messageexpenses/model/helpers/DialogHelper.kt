@@ -5,7 +5,9 @@ import android.app.Dialog
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
+import androidx.annotation.Nullable
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.LifecycleOwner
 import com.sanmed.android.messageexpenses.R
 import com.sanmed.android.messageexpenses.databinding.ViewAddExpenseBinding
 import com.sanmed.android.messageexpenses.view.add_category_expense.IAddCategoryExpenseView
@@ -15,11 +17,12 @@ import com.sanmed.android.messageexpenses.view.dialog.IDialogHandler
 class DialogHelper {
 
     companion object{
-        fun <T : IAddCategoryExpenseView> showAddExpenseDialog(dialogHandler: IDialogHandler<T>){
+        fun <T : IAddCategoryExpenseView> showCategoryExpenseDialog(dialogHandler: IDialogHandler<T>,  lifecycleOwner: LifecycleOwner){
             if(dialogHandler.getDialog() == null){
                 val inflater: LayoutInflater = LayoutInflater.from(dialogHandler.getContext())
                 val binding:ViewAddExpenseBinding = DataBindingUtil.inflate(inflater,R.layout.view_add_expense,null,false)
                 binding.viewModel = dialogHandler.getViewModel()
+                binding.lifecycleOwner = lifecycleOwner
                 val dialog: Dialog = createDialog(dialogHandler.getContext(),binding.root)
                 dialogHandler.setDialog(dialog)
             }

@@ -24,4 +24,8 @@ class LocalCategoryExpensesDataSource @Inject constructor(private val categoryEx
     override fun delete(categoryExpenseView: ICategoryExpenseView) {
         categoryExpensesDAO.delete(CategoryExpenseHelper.getCategoryExpenseEntityFromCategoryExpenseView(categoryExpenseView))
     }
+
+    override fun editCategory(categoryExpenseView: ICategoryExpenseView) {
+        categoryExpensesDAO.update(CategoryExpenseHelper.getCategoryExpenseEntityFromCategoryExpenseView(categoryExpenseView))
+    }
 }

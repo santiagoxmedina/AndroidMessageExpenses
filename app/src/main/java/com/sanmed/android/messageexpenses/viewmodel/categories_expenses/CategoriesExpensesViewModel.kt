@@ -1,7 +1,6 @@
 package com.sanmed.android.messageexpenses.viewmodel.categories_expenses
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.sanmed.android.messageexpenses.model.repository.ICategoryExpensesRepository
 import com.sanmed.android.messageexpenses.view.ICategoryExpenseView
@@ -17,16 +16,8 @@ class CategoriesExpensesViewModel @Inject constructor(private val _addExpenseVie
     val categoriesExpenses: LiveData<List<ICategoryExpenseView?>>
     get() = categoryExpensesRepository.getCategoriesExpenses()
 
-    private val _addExpense = MutableLiveData<Boolean>()
-    val addExpense: LiveData<Boolean>
-        get() = _addExpense
-
     fun onAddExpense(){
-        _addExpense.value = true
-    }
-
-    fun onAddExpenseCompleted(){
-        _addExpense.value = false
+        _addExpenseViewModel.onAddCategoryExpense()
     }
 
     fun getAddExpenseViewModel(): IAddCategoryExpenseViewModel {
@@ -34,7 +25,7 @@ class CategoriesExpensesViewModel @Inject constructor(private val _addExpenseVie
     }
 
     fun onEdit(categoryExpenseView: ICategoryExpenseView){
-
+        _addExpenseViewModel.onEditCategoryExpense(categoryExpenseView)
     }
 
     fun onDelete(categoryExpenseView: ICategoryExpenseView){

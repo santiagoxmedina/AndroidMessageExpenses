@@ -21,7 +21,7 @@ class CategoriesExpensesFragment : Fragment() {
     val viewModel  by viewModels<CategoriesExpensesViewModel>()
     private lateinit var binding : FragmentCategoriesExpensesBinding
     private lateinit var adapterCategory : CategoryExpensesAdapter
-    private lateinit var addCategoryDialog:AddCategoryExpenseDialogFragmentHandler
+    private lateinit var categoryCategoryDialog:AddCategoryExpenseDialogFragmentHandler
 
 
     override fun onCreateView(
@@ -38,7 +38,7 @@ class CategoriesExpensesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         adapterCategory = CategoryExpensesAdapter( DiffExpense(),getOnEditCategoryAction())
         binding.listExpensesRecyclerView.adapter = adapterCategory
-        addCategoryDialog = AddCategoryExpenseDialogFragmentHandler(this,viewModel.getAddExpenseViewModel())
+        categoryCategoryDialog = AddCategoryExpenseDialogFragmentHandler(this,viewModel.getAddExpenseViewModel())
         initSubscribers();
     }
 
@@ -72,23 +72,22 @@ class CategoriesExpensesFragment : Fragment() {
 
     private fun initSubscribers() {
         viewModel.categoriesExpenses.observe(viewLifecycleOwner,this::onExpensesChanged)
-        viewModel.addExpense.observe(viewLifecycleOwner,this::onAddExpense)
+        viewModel.getAddExpenseViewModel().getShowDialog().observe(viewLifecycleOwner,this::onShowCategoryExpenseDialog)
     }
 
-    private fun onAddExpense(addExpense : Boolean) {
-        if(addExpense) {
-            showAddExpenseDialog();
-            viewModel.onAddExpenseCompleted()
+    private fun onShowCategoryExpenseDialog(addExpense : Boolean?) {
+        if(addExpense == true) {
+            showCategoryExpenseDialog();
+            viewModel.getAddExpenseViewModel().onAddCategoryExpenseCompleted()
         }
     }
 
-    private fun showAddExpenseDialog() {
-        DialogHelper.showAddExpenseDialog(addCategoryDialog)
+    private fun showCategoryExpenseDialog() {
+        DialogHelper.showCategoryExpenseDialog(categoryCategoryDialog,this)
     }
 
     private fun onExpensesChanged(expens:List<ICategoryExpenseView?>) {
         adapterCategory.submitList(expens)
     }
-
 
 }

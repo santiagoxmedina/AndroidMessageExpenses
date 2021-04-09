@@ -10,4 +10,7 @@
     <string name="category">Categorias</string>
     <string name="delete">Eliminar</string>
     <string name="edit">Editar</string>
+    <string name="add_category_expense">Agregar categoria</string>
+    <string name="add">Agregar</string>
+    <string name="edit_category_expense">Editar categoria</string>
 </resources>

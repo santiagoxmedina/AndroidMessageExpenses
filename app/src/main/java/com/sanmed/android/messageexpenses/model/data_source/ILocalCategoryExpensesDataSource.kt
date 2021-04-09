@@ -7,4 +7,5 @@ interface ILocalCategoryExpensesDataSource {
     fun addCategory(categoryExpenseView: ICategoryExpenseView)
     fun getCategoriesExpenses(): LiveData<List<ICategoryExpenseView?>>
     fun delete(categoryExpenseView: ICategoryExpenseView)
+    fun editCategory(categoryExpenseView: ICategoryExpenseView)
 }

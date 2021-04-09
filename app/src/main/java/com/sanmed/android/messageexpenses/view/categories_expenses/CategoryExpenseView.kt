@@ -3,7 +3,7 @@ package com.sanmed.android.messageexpenses.view.categories_expenses
 import com.sanmed.android.messageexpenses.view.ICategoryExpenseView
 import java.text.NumberFormat
 
-class CategoryExpenseView(private val _id: String,private val _name: String,private val _amount: Float,private val _percentage: Float, private val _type: Int ):
+class CategoryExpenseView(private val _id: String,private var _name: String,private var _amount: Float,private val _percentage: Float, private val _type: Int ):
     ICategoryExpenseView {
 
     companion object{
@@ -37,5 +37,13 @@ class CategoryExpenseView(private val _id: String,private val _name: String,priv
 
     override fun getId(): String {
         return  _id
+    }
+
+    override fun setName(name: String) {
+        _name = name
+    }
+
+    override fun setAmount(amount: Float) {
+        _amount = amount
     }
 }

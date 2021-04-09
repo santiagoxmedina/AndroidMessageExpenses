@@ -1,11 +1,8 @@
 package com.sanmed.android.messageexpenses.model.db
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
+import androidx.room.*
 import androidx.room.OnConflictStrategy.REPLACE
-import androidx.room.Query
 import com.sanmed.android.messageexpenses.model.entities.CategoryExpenseEntity
 import kotlinx.coroutines.flow.Flow
 
@@ -19,4 +16,7 @@ interface CategoryExpenseDAO {
 
     @Delete
     fun delete(categoryExpense: CategoryExpenseEntity)
+
+    @Update
+    fun update(categoryExpense: CategoryExpenseEntity)
 }

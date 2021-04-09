@@ -8,4 +8,6 @@ interface ICategoryExpenseView {
     fun  getPercentageString():String
     fun  getType():Int
     fun  getId():String
+    fun setName(name: String)
+    fun setAmount(amount: Float)
 }

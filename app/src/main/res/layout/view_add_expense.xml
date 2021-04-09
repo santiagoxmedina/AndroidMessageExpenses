@@ -23,7 +23,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/small_margin"
-                android:text="@string/add_expense"
+                android:text="@{viewModel.getTitle()}"
                 android:textAlignment="center"
                 android:textAllCaps="true"
                 android:textAppearance="?textAppearanceHeadline4"
@@ -94,7 +94,7 @@
                     android:layout_marginStart="@dimen/small_margin"
                     android:layout_weight="1"
                     android:onClick="@{()->viewModel.onAccept()}"
-                    android:text="@string/accept" />
+                    android:text="@{viewModel.getOkButtonText()}" />
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
