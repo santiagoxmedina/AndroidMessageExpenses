@@ -6,7 +6,7 @@ import com.sanmed.android.messageexpenses.view.ICategoryExpenseView
 import javax.inject.Inject
 
 class CategoryExpensesRepository @Inject constructor(private val categoryExpensesDataSource: ILocalCategoryExpensesDataSource):ICategoryExpensesRepository  {
-    override suspend fun addCategory(categoryExpenseView: ICategoryExpenseView) {
+    override  fun addCategory(categoryExpenseView: ICategoryExpenseView) {
         categoryExpensesDataSource.addCategory(categoryExpenseView)
     }
 
@@ -14,11 +14,11 @@ class CategoryExpensesRepository @Inject constructor(private val categoryExpense
         return categoryExpensesDataSource.getCategoriesExpenses()
     }
 
-    override suspend fun delete(categoryExpenseView: ICategoryExpenseView) {
+    override  fun delete(categoryExpenseView: ICategoryExpenseView) {
         categoryExpensesDataSource.delete(categoryExpenseView)
     }
 
-    override suspend fun editCategory(categoryExpenseView: ICategoryExpenseView) {
+    override  fun editCategory(categoryExpenseView: ICategoryExpenseView) {
         categoryExpensesDataSource.editCategory(categoryExpenseView)
     }
 }

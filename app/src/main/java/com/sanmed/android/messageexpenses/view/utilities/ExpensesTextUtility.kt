@@ -1,57 +1,56 @@
 package com.sanmed.android.messageexpenses.view.utilities
 
+import com.sanmed.android.messageexpenses.model.exeptions.MessageNotSupportedException
+import com.sanmed.android.messageexpenses.model.expensess_parsers.BancolombiaParser
+import com.sanmed.android.messageexpenses.model.expensess_parsers.EmptyParser
+import com.sanmed.android.messageexpenses.model.expensess_parsers.IExpensesParser
+import com.sanmed.android.messageexpenses.model.expensess_parsers.ScotiaBankParser
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.HashMap
 
 class ExpensesTextUtility {
     companion object {
+        private val bancolombiaParser: IExpensesParser = BancolombiaParser()
+        private val scotiaBankParser: IExpensesParser = ScotiaBankParser()
+        private val parsers: HashMap<String, IExpensesParser> = createParsers()
+
+        private fun createParsers(): java.util.HashMap<String, IExpensesParser> {
+            val result = HashMap<String, IExpensesParser>()
+            result["Bancolombia le informa Compra por"] = bancolombiaParser
+            result["Scotiabank Colpatria:"] = scotiaBankParser
+            return result
+        }
+
+        private fun getParser(message: String): IExpensesParser {
+
+            parsers.forEach {
+                if (message.contains(it.key)) {
+                    return it.value
+                }
+            }
+            throw MessageNotSupportedException()
+        }
 
         fun getPurchasePrice(message: String): Float {
-            val regexValue = "\\$[\\d.,']+".toRegex()
-            var match = regexValue.find(message)
-            var result: String? = match?.value
-            result = result?.replace("$", "")
-            result = result?.replace(".", "")
-            result = result?.replace(",", ".")
-            return result?.toFloat() ?: 0f
+            return getParser(message).getPurchasePrice(message)
         }
 
         fun getPurchasePlace(message: String): String {
 
-            val regexValue = "en .+ \\d\\d:".toRegex()
-            var match = regexValue.find(message)
-            var result: String
-            result = match?.value ?: "(Ninguno)"
-            val startRemoveRegexValue = "en\\h".toRegex()
-            result = startRemoveRegexValue.replace(result, "")
-
-            val timeRemoveRegexValue = "\\h\\d\\d:".toRegex()
-            result = timeRemoveRegexValue.replace(result, "")
-            return result
+            return getParser(message).getPurchasePlace(message)
         }
 
         fun getPurchaseDate(message: String): Date {
-            val regexValue = " \\d{1,2}:\\d{1,2}. \\d{1,2}/\\d{1,2}/\\d{1,4} ".toRegex();
-            var match = regexValue.find(message)
-            var result: String
-            result = match?.value ?: ""
-            result = result.replace(" ", "")
-            result = result.replace(".", " ")
-
-            val format = SimpleDateFormat("H:mm dd/MM/yyyy")
-            return format.parse(result)
+            return getParser(message).getPurchaseDate(message)
         }
 
         fun getPurchaseCardNumber(message: String): String {
-            val regexValue = "\\*\\d{4,}".toRegex()
-            var match = regexValue.find(message)
-            return match?.value ?: "*0000"
+            return getParser(message).getPurchaseCardNumber(message)
         }
 
         fun getPurchaseCardType(message: String): String {
-            val regexValue = "T\\.\\w{1,5}".toRegex()
-            var match = regexValue.find(message)
-            return match?.value ?: "None"
+            return getParser(message).getPurchaseCardType(message)
         }
 
     }

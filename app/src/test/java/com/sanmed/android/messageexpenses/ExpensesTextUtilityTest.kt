@@ -13,6 +13,36 @@ class ExpensesTextUtilityTest {
     var purchaseDateSame12tMessage:String = "Bancolombia le informa Compra por \$11.390,00 en TERPEL MED PILARICA 12:59. 22/10/2019 T.Cred *0214. Inquietudes al 0345109095/018000931987.";
     var purchaseDateOver12Message:String = "Bancolombia le informa Compra por \$11.390,00 en TERPEL MED PILARICA 15:59. 2/10/2019 T.Cred *0214. Inquietudes al 0345109095/018000931987.";
 
+    var purchaseScotiaBank1 = "Scotiabank Colpatria: Realizaste trans o compra recurrente en PAYU IFOOD por 101,300 con tu tarjeta PLATINUM LIFEMILES. L?nea al 4232230 o 0"
+    var purchaseScotiaBank2 = "Scotiabank Colpatria: Realizaste trans o compra recurrente en PAY WPLAY.CO por 63,000 con tu tarjeta PLATINUM LIFEMILES. L?nea al 4232230 o "
+
+    @Test
+    fun getPurchasePriceScotiaBank() {
+
+        assertEquals(
+            "Purchase prices are not equal",
+            101300f,
+            ExpensesTextUtility.getPurchasePrice(purchaseScotiaBank1)
+        )
+        assertEquals(
+            "Purchase prices are not equal",
+            63000f,
+            ExpensesTextUtility.getPurchasePrice(purchaseScotiaBank2)
+        )
+    }
+
+    @Test
+    fun getPurchasePlaceScotiaBank() {
+
+        assertEquals(
+            "Purchase Place are not equal",
+            "PAYU IFOOD",
+            ExpensesTextUtility.getPurchasePlace(purchaseScotiaBank1)
+        )
+    }
+
+    //Bancolombia
+
     @Test
     fun getPurchasePrice() {
 

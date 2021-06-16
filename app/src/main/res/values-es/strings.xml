@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">Mensajes de Gatos</string>
     <string name="LoadSMSButton">Leer Mensajes</string>
     <string name="expenses">Expenses</string>
     <string name="add_expense">add expense</string>
@@ -13,4 +12,7 @@
     <string name="add_category_expense">Agregar categoria</string>
     <string name="add">Agregar</string>
     <string name="edit_category_expense">Editar categoria</string>
+    <string name="no_expenses">Sin gastos</string>
+    <string name="update">Actualizar</string>
+    <string name="permission_needed">Permisos necesarios</string>
 </resources>

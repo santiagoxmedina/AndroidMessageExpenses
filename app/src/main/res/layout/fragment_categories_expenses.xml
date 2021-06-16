@@ -17,7 +17,7 @@
             android:id="@+id/list_expenses_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:listitem="@layout/view_expense"
+            tools:listitem="@layout/view_edit_category_expense"
             android:layout_marginStart="@dimen/small_margin"
             android:layout_marginEnd="@dimen/small_margin"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />

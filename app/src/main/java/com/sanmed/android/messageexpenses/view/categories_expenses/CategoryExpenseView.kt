@@ -1,22 +1,20 @@
 package com.sanmed.android.messageexpenses.view.categories_expenses
 
 import com.sanmed.android.messageexpenses.view.ICategoryExpenseView
+import com.sanmed.android.messageexpenses.view.utilities.CurrencyUtilities
 import java.text.NumberFormat
 
 class CategoryExpenseView(private val _id: String,private var _name: String,private var _amount: Float,private val _percentage: Float, private val _type: Int ):
     ICategoryExpenseView {
 
-    companion object{
-        private  val percentageFormat = NumberFormat.getPercentInstance()
-        private  val currencyFormat = NumberFormat.getCurrencyInstance()
-    }
+    private  val percentageFormat = NumberFormat.getPercentInstance()
 
     override fun getAmount(): Float {
         return _amount
     }
 
     override fun getAmountString(): String {
-        return currencyFormat.format(_amount)
+        return CurrencyUtilities.format(_amount)
     }
 
     override fun getName(): String {

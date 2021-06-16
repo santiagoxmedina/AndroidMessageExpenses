@@ -17,7 +17,9 @@ class CategoriesExpensesViewModel @Inject constructor(private val _addExpenseVie
     get() = categoryExpensesRepository.getCategoriesExpenses()
 
     fun onAddExpense(){
-        _addExpenseViewModel.onAddCategoryExpense()
+        GlobalScope.launch {
+            _addExpenseViewModel.onAddCategoryExpense()
+        }
     }
 
     fun getAddExpenseViewModel(): IAddCategoryExpenseViewModel {
@@ -25,7 +27,9 @@ class CategoriesExpensesViewModel @Inject constructor(private val _addExpenseVie
     }
 
     fun onEdit(categoryExpenseView: ICategoryExpenseView){
-        _addExpenseViewModel.onEditCategoryExpense(categoryExpenseView)
+        GlobalScope.launch {
+            _addExpenseViewModel.onEditCategoryExpense(categoryExpenseView)
+        }
     }
 
     fun onDelete(categoryExpenseView: ICategoryExpenseView){

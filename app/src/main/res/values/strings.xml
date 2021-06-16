@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MessageExpenses</string>
+    <string name="app_name" translatable="false">Piger</string>
     <string name="LoadSMSButton">Load SMS</string>
     <string name="expenses">Expenses</string>
     <string name="add_expense">add expense</string>
@@ -13,4 +13,7 @@
     <string name="edit">Edit</string>
     <string name="add">Add</string>
     <string name="edit_category_expense">Edit category</string>
+    <string name="no_expenses">Without expenses</string>
+    <string name="update">Update</string>
+    <string name="permission_needed">Need permissions</string>
 </resources>
