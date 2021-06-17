@@ -15,4 +15,7 @@
     <string name="no_expenses">Sin gastos</string>
     <string name="update">Actualizar</string>
     <string name="permission_needed">Permisos necesarios</string>
+    <string name="filter">Filtrar</string>
+    <string name="sort_by_date">Ordenar por fecha</string>
+    <string name="group_by_name">Agrupar por nombre</string>
 </resources>

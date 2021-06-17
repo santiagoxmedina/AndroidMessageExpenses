@@ -8,6 +8,7 @@
         <variable
             name="itemAnimator"
             type="androidx.recyclerview.widget.RecyclerView.ItemAnimator" />
+
         <variable
             name="viewModel"
             type="com.sanmed.android.messageexpenses.view.summary.ISummaryViewModel" />
@@ -18,13 +19,15 @@
         android:layout_height="match_parent"
         tools:context=".view.summary.SummaryFragment">
 
+
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/expensesSummaryList"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toTopOf="@+id/button"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -39,25 +42,12 @@
             android:text="@string/no_expenses"
             android:textAlignment="center"
             android:textAppearance="?textAppearanceHeadline5"
-            app:layout_constraintBottom_toBottomOf="@+id/button"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:setVisibilityListInvert="@{viewModel.getSummaryItemList()}" />
 
-
-        <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:onClick="@{()->viewModel.onUpdate()}"
-            android:text="@string/update"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.97" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

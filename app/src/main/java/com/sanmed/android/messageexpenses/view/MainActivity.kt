@@ -3,69 +3,64 @@ package com.sanmed.android.messageexpenses.view
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.net.Uri
+import android.view.*
+import android.widget.PopupMenu
+import androidx.activity.viewModels
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import com.sanmed.android.messageexpenses.R
+import com.sanmed.android.messageexpenses.databinding.ActivityMainBinding
 import com.sanmed.android.messageexpenses.model.entities.CategoryExpenseEntity
 import com.sanmed.android.messageexpenses.view.utilities.ExpensesTextUtility
+import com.sanmed.android.messageexpenses.viewmodel.main.MainActivityViewModel
+import com.sanmed.android.messageexpenses.viewmodel.summary.SummaryViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    //private lateinit var model: ExpensesViewModel
-
+    lateinit var mBinding: ActivityMainBinding
+    val viewModel by viewModels<MainActivityViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        mBinding =
+            DataBindingUtil.inflate(LayoutInflater.from(this), R.layout.activity_main, null, false)
+        setContentView(mBinding.root)
+        setSupportActionBar(mBinding.toolbar)
     }
 
-    private fun subscribeToViewModel(){
-        //model = ViewModelProvider(this).get(ExpensesViewModel::class.java)
-//        val expensesObserver = androidx.lifecycle.Observer<List<Expense>>{
-//            updateExpenses(it as MutableList<Expense>)
-//        }
-        //model.expenses.observe(this,expensesObserver)
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.summary_menu,menu)
+        return true
     }
 
-//    override fun onClick(v: View?) {
-//        if (v?.id == R.id.btnLoadSMS) {
-//
-//            if (ContextCompat.checkSelfPermission(
-//                    baseContext,
-//                    "android.permission.READ_SMS"
-//                ) == PackageManager.PERMISSION_GRANTED
-//            ) {
-//                val expenses = loadExpenses()
-//                updateExpenses(expenses)
-//
-//            } else {
-//                ActivityCompat.requestPermissions(this, arrayOf("android.permission.READ_SMS"), 123)
-//            }
-//        }
-//    }
-//
-//    private fun updateExpenses(expenses: MutableList<Expense>){
-//        viewadapter.expenses = expenses
-//    }
+    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
+        R.id.action_filter -> {
+            showFilterPopupMenu(mBinding.toolbar)
+            true
+        }
+        R.id.action_update -> {
+            viewModel.onUpdate()
+            true
+        }
+        R.id.action_group_by_name -> {
 
-//    private fun loadExpenses(): MutableList<CategoryExpenseEntity> {
-//        val smsExpenses = mutableListOf<CategoryExpenseEntity>()
-//        contentResolver?.query(Uri.parse("content://sms/inbox"), null, null, null, null)?.use {
-//            var msgData: String
-//            it.moveToFirst()
-//            do {
-//                msgData = it.getString(it.getColumnIndex("body"))
-//                if (msgData.contains("Bancolombia le informa Compra por")) {
-//                    val place = ExpensesTextUtility.getPurchasePlace(msgData)
-//                    val price = ExpensesTextUtility.getPurchasePrice(msgData)
-//                    val date = ExpensesTextUtility.getPurchaseDate(msgData)
-//                    val id =  date.toString()+price
-//                    val expense = CategoryExpenseEntity(id,place,price,date.toString())
-//
-//                    smsExpenses.add(expense)
-//                }
-//            } while (it.moveToNext())
-//        }
-//       return smsExpenses
-//    }
+            true
+        }
+        else -> {
+            super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun showFilterPopupMenu(view: View?){
+        view?.let {
+            val popup = PopupMenu(this, view)
+            val inflater: MenuInflater = popup.menuInflater
+            inflater.inflate(R.menu.filter_menu, popup.menu)
+            popup.setOnMenuItemClickListener (this::onOptionsItemSelected)
+            popup.show()
+        }
+    }
+
 }
