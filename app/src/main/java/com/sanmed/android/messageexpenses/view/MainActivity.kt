@@ -44,8 +44,8 @@ class MainActivity : AppCompatActivity() {
             viewModel.onUpdate()
             true
         }
-        R.id.action_group_by_name -> {
-
+        R.id.action_group_by_month -> {
+            viewModel.onGroupByMonth()
             true
         }
         else -> {

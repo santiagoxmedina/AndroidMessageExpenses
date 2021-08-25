@@ -8,17 +8,18 @@ import androidx.recyclerview.widget.ListAdapter
 import com.sanmed.android.messageexpenses.R
 import com.sanmed.android.messageexpenses.databinding.ViewNameAmountBinding
 
-class SummaryItemAdapter(diffCallback: DiffUtil.ItemCallback<SummaryItemView>): ListAdapter<SummaryItemView, SummaryItemViewViewHolder>(diffCallback) {
+class SummaryItemAdapter(diffCallback: DiffUtil.ItemCallback<ISummaryItemView>) :
+    ListAdapter<ISummaryItemView, ISummaryItemViewHolder>(diffCallback) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SummaryItemViewViewHolder {
-        return SummaryItemViewViewHolder(getViewBinding(parent))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ISummaryItemViewHolder {
+        return ISummaryItemViewHolderBuilder.buildType(parent,viewType)
     }
 
-    private fun getViewBinding(parent: ViewGroup): ViewNameAmountBinding {
-        return DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.view_name_amount,parent,false)
+    override fun getItemViewType(position: Int): Int {
+        return getItem(position).getType()
     }
 
-    override fun onBindViewHolder(holder: SummaryItemViewViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ISummaryItemViewHolder, position: Int) {
         holder.onBind(getItem(position))
     }
 }

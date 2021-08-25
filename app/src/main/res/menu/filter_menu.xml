@@ -6,12 +6,9 @@
         android:title="@string/update"
         app:showAsAction="never"/>
     <item
-        android:id="@+id/action_sort_by_date"
-        android:title="@string/sort_by_date"
+        android:id="@+id/action_group_by_month"
+        android:title="@string/group_by_month"
         app:showAsAction="never"/>
 
-    <item
-        android:id="@+id/action_group_by_name"
-        android:title="@string/group_by_name"
-        app:showAsAction="never"/>
+
 </menu>

@@ -13,4 +13,8 @@ class MainActivityViewModel @Inject constructor(private val expensesRepository: 
     fun  onUpdate(){
         GlobalScope.launch {expensesRepository.updateSummaryExpenses()  }
     }
+
+    fun onGroupByMonth() {
+        GlobalScope.launch {expensesRepository.onGroupByMonth()}
+    }
 }

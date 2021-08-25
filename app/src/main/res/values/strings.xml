@@ -18,5 +18,6 @@
     <string name="permission_needed">Need permissions</string>
     <string name="filter">filter</string>
     <string name="sort_by_date">Sort by date</string>
+    <string name="group_by_month">Group by month</string>
     <string name="group_by_name">Group by name</string>
 </resources>

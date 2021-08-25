@@ -5,13 +5,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.sanmed.android.messageexpenses.view.summary.SummaryItemView
 import androidx.databinding.BindingAdapter
 import com.sanmed.android.messageexpenses.model.helpers.SummaryItemHelper
+import com.sanmed.android.messageexpenses.view.summary.ISummaryItemView
 import com.sanmed.android.messageexpenses.view.summary.SummaryItemAdapter
 
 object BindingAdapter {
 
     @BindingAdapter("setSummaryItemListData")
     @JvmStatic
-    fun setSummaryItemListData(view: RecyclerView, data: List<SummaryItemView>?) {
+    fun setSummaryItemListData(view: RecyclerView, data: List<ISummaryItemView>?) {
 
         if (view.adapter == null) {
             view.adapter = SummaryItemHelper.createAdapter()
@@ -29,7 +30,7 @@ object BindingAdapter {
 
     @BindingAdapter("setVisibilityList")
     @JvmStatic
-    fun setVisibilityList(view: View, data: List<SummaryItemView>?) {
+    fun setVisibilityList(view: View, data: List<ISummaryItemView>?) {
 
         if (data.isNullOrEmpty()) {
             view.visibility = View.GONE
@@ -40,7 +41,7 @@ object BindingAdapter {
 
     @BindingAdapter("setVisibilityListInvert")
     @JvmStatic
-    fun setVisibilityListInvert(view: View, data: List<SummaryItemView>?) {
+    fun setVisibilityListInvert(view: View, data: List<ISummaryItemView>?) {
         if (data.isNullOrEmpty()) {
             view.visibility = View.VISIBLE
         } else {
