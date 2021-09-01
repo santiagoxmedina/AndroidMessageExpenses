@@ -1,5 +1,6 @@
 package com.sanmed.android.messageexpenses.model.expensess_parsers
 
+import java.math.BigDecimal
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -7,14 +8,14 @@ class BancolombiaParser : IExpensesParser {
 
     //"Bancolombia le informa Compra por \$11.390,00 en TERPEL MED PILARICA 12:59. 22/10/2019 T.Deb *0214. Inquietudes al 0345109095/018000931987.";
 
-    override fun getPurchasePrice(message: String): Float {
+    override fun getPurchasePrice(message: String): BigDecimal {
         val regexValue = "\\$[\\d.,']+".toRegex()
         var match = regexValue.find(message)
         var result: String? = match?.value
         result = result?.replace("$", "")
         result = result?.replace(".", "")
         result = result?.replace(",", ".")
-        return result?.toFloat() ?: 0f
+        return result?.toBigDecimal() ?: BigDecimal.ZERO
     }
 
     override fun getPurchasePlace(message: String): String {
@@ -31,7 +32,7 @@ class BancolombiaParser : IExpensesParser {
         return result
     }
 
-    override fun getPurchaseDate(message: String): Date {
+    override fun getPurchaseDate(message: String):Calendar? {
         val regexValue = " \\d{1,2}:\\d{1,2}. \\d{1,2}/\\d{1,2}/\\d{1,4} ".toRegex();
         var match = regexValue.find(message)
         var result: String
@@ -39,8 +40,13 @@ class BancolombiaParser : IExpensesParser {
         result = result.replace(" ", "")
         result = result.replace(".", " ")
 
-        val format = SimpleDateFormat("H:mm dd/MM/yyyy")
-        return format.parse(result)
+        val format = SimpleDateFormat("H:mm dd/MM/yyyy",Locale.getDefault())
+        var calendar:Calendar? = null
+        format.parse(result)?.let {
+            calendar = Calendar.getInstance()
+            calendar?.time =  it
+        }
+        return calendar
     }
 
     override fun getPurchaseCardNumber(message: String): String {

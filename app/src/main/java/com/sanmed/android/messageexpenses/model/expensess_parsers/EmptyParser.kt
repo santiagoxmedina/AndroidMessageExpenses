@@ -1,20 +1,21 @@
 package com.sanmed.android.messageexpenses.model.expensess_parsers
 
+import java.math.BigDecimal
 import java.util.*
 
 open class EmptyParser:IExpensesParser {
 
     private val calendar = Calendar.getInstance()
-    override fun getPurchasePrice(message: String): Float {
-        return 0F
+    override fun getPurchasePrice(message: String): BigDecimal {
+        return BigDecimal.ZERO
     }
 
     override fun getPurchasePlace(message: String): String {
         return ""
     }
 
-    override fun getPurchaseDate(message: String): Date {
-        return calendar.time
+    override fun getPurchaseDate(message: String): Calendar?  {
+        return null
     }
 
     override fun getPurchaseCardNumber(message: String): String {

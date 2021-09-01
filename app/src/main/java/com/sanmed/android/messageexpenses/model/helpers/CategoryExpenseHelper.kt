@@ -3,6 +3,7 @@ package com.sanmed.android.messageexpenses.model.helpers
 import com.sanmed.android.messageexpenses.model.entities.CategoryExpenseEntity
 import com.sanmed.android.messageexpenses.view.categories_expenses.CategoryExpenseView
 import com.sanmed.android.messageexpenses.view.ICategoryExpenseView
+import java.math.BigDecimal
 
 class CategoryExpenseHelper {
 
@@ -34,7 +35,7 @@ class CategoryExpenseHelper {
             return result
         }
 
-        fun create(name: String, amount: Float): ICategoryExpenseView {
+        fun create(name: String, amount: BigDecimal): ICategoryExpenseView {
             return CategoryExpenseView(UUIDHelper.generate(),name,amount,0f,0)
         }
     }

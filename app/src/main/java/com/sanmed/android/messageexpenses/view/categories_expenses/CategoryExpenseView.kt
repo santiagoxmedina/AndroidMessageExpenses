@@ -2,20 +2,19 @@ package com.sanmed.android.messageexpenses.view.categories_expenses
 
 import com.sanmed.android.messageexpenses.view.ICategoryExpenseView
 import com.sanmed.android.messageexpenses.view.utilities.CurrencyUtilities
+import java.math.BigDecimal
 import java.text.NumberFormat
 
-class CategoryExpenseView(private val _id: String,private var _name: String,private var _amount: Float,private val _percentage: Float, private val _type: Int ):
+class CategoryExpenseView(private val _id: String,private var _name: String,private var _amount: BigDecimal,private val _percentage: Float, private val _type: Int ):
     ICategoryExpenseView {
 
     private  val percentageFormat = NumberFormat.getPercentInstance()
 
-    override fun getAmount(): Float {
+    override fun getAmount(): BigDecimal {
         return _amount
     }
 
-    override fun getAmountString(): String {
-        return CurrencyUtilities.format(_amount)
-    }
+    override fun getAmountString() = CurrencyUtilities.format(_amount)
 
     override fun getName(): String {
         return _name
@@ -41,7 +40,7 @@ class CategoryExpenseView(private val _id: String,private var _name: String,priv
         _name = name
     }
 
-    override fun setAmount(amount: Float) {
+    override fun setAmount(amount: BigDecimal) {
         _amount = amount
     }
 }

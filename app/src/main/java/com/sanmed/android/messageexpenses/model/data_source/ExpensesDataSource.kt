@@ -5,7 +5,9 @@ import android.database.Cursor
 import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.sanmed.android.messageexpenses.model.helpers.MonthExpensesHelper
 import com.sanmed.android.messageexpenses.model.helpers.SummaryItemHelper
+import com.sanmed.android.messageexpenses.view.month_expenses.MonthExpensesUI
 import com.sanmed.android.messageexpenses.view.summary.ISummaryItemView
 import com.sanmed.android.messageexpenses.view.summary.SummaryItemView
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -15,6 +17,7 @@ class ExpensesDataSource @Inject constructor(@ApplicationContext private val con
     IExpensesDataSource {
     val expenses = MutableLiveData<List<ISummaryItemView>>()
     val _expenses: LiveData<List<ISummaryItemView>> get() = expenses
+    var expensesList: List<SummaryItemView>? = null
     override fun getSummaryExpenses(): LiveData<List<ISummaryItemView>> {
         return _expenses
     }
@@ -22,7 +25,7 @@ class ExpensesDataSource @Inject constructor(@ApplicationContext private val con
     override fun updateSummaryExpenses() {
         val cursor: Cursor? =
             context.contentResolver.query(Uri.parse("content://sms/inbox"), null, null, null, null)
-        val result = mutableListOf<ISummaryItemView>()
+        val result = mutableListOf<SummaryItemView>()
         cursor?.apply {
             if (moveToFirst()) {
                 do {
@@ -41,10 +44,23 @@ class ExpensesDataSource @Inject constructor(@ApplicationContext private val con
                 } while (moveToNext())
             }
         }?.close()
-        expenses.postValue(result)
+        expensesList = result;
+        expenses.postValue(expensesList)
     }
 
     override fun onGroupByMonth() {
-        TODO("Not yet implemented")
+        val monthExpenses: List<ISummaryItemView> = getExpensesGroupByMonth(expensesList)
+        expenses.postValue(monthExpenses)
+    }
+
+    private fun getExpensesGroupByMonth(allExpenses: List<SummaryItemView>?): List<ISummaryItemView> {
+        val result = mutableListOf<ISummaryItemView>()
+        allExpenses?.let {list->
+            val monthExpensesMap = list.groupBy({MonthExpensesHelper.getMonthId(it)},{it})
+            monthExpensesMap.forEach { (month, monthList) ->
+                result.add(MonthExpensesUI(month,monthList))
+            }
+        }
+        return result;
     }
 }

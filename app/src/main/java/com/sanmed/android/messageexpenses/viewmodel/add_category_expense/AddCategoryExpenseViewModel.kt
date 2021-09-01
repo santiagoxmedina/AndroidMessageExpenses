@@ -87,7 +87,7 @@ class AddCategoryExpenseViewModel @Inject constructor(
 
     private suspend fun editCategory() {
         try {
-            val amount = amountTextMutable.value!!.toFloat()
+            val amount = amountTextMutable.value!!.toBigDecimal()
             actionCategoryExpenseView.setName(nameTextMutable.value!!)
             actionCategoryExpenseView.setAmount(amount)
             categoryExpensesRepository.editCategory(
@@ -101,7 +101,7 @@ class AddCategoryExpenseViewModel @Inject constructor(
 
     private suspend fun addCategory() {
         try {
-            val amount = amountTextMutable.value!!.toFloat()
+            val amount = amountTextMutable.value!!.toBigDecimal()
             actionCategoryExpenseView = CategoryExpenseHelper.create(
                 nameTextMutable.value!!, amount
             )

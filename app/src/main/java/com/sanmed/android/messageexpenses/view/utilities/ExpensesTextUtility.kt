@@ -5,6 +5,7 @@ import com.sanmed.android.messageexpenses.model.expensess_parsers.BancolombiaPar
 import com.sanmed.android.messageexpenses.model.expensess_parsers.EmptyParser
 import com.sanmed.android.messageexpenses.model.expensess_parsers.IExpensesParser
 import com.sanmed.android.messageexpenses.model.expensess_parsers.ScotiaBankParser
+import java.math.BigDecimal
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.HashMap
@@ -32,7 +33,7 @@ class ExpensesTextUtility {
             throw MessageNotSupportedException()
         }
 
-        fun getPurchasePrice(message: String): Float {
+        fun getPurchasePrice(message: String): BigDecimal {
             return getParser(message).getPurchasePrice(message)
         }
 
@@ -41,7 +42,7 @@ class ExpensesTextUtility {
             return getParser(message).getPurchasePlace(message)
         }
 
-        fun getPurchaseDate(message: String): Date {
+        fun getPurchaseDate(message: String): Calendar? {
             return getParser(message).getPurchaseDate(message)
         }
 

@@ -1,7 +1,9 @@
 package com.sanmed.android.messageexpenses.view
 
+import java.math.BigDecimal
+
 interface ICategoryExpenseView {
-    fun  getAmount():Float
+    fun  getAmount(): BigDecimal
     fun  getAmountString():String
     fun  getName():String
     fun  getPercentage():Float
@@ -9,5 +11,5 @@ interface ICategoryExpenseView {
     fun  getType():Int
     fun  getId():String
     fun setName(name: String)
-    fun setAmount(amount: Float)
+    fun setAmount(amount: BigDecimal)
 }
