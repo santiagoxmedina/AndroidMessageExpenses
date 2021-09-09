@@ -1,5 +1,6 @@
 package com.sanmed.android.messageexpenses.viewmodel.summary
 
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -14,7 +15,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class SummaryViewModel @Inject constructor(private val _expensesRepository: IExpensesRepository) :
+open class SummaryViewModel @Inject constructor(private val _expensesRepository: IExpensesRepository) :
     ViewModel(), ISummaryViewModel {
 
     private val _navigateToExpenses = MutableLiveData<Boolean>()
@@ -24,6 +25,8 @@ class SummaryViewModel @Inject constructor(private val _expensesRepository: IExp
     val smsPermissionName = "android.permission.READ_SMS"
     private val _checkingPermission = MutableLiveData<String>()
     val checkingPermission: LiveData<String> get() = _checkingPermission
+
+
     override fun onNavigateToExpenses() {
         _navigateToExpenses.value = true
     }

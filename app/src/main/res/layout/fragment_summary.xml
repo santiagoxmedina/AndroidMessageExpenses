@@ -17,6 +17,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/gray0"
+        android:layout_marginHorizontal="@dimen/margin_2"
         tools:context=".view.summary.SummaryFragment">
 
 
@@ -34,7 +36,7 @@
             app:setItemAnimator="@{itemAnimator}"
             app:setSummaryItemListData="@{viewModel.getSummaryItemList()}"
             app:setVisibilityList="@{viewModel.getSummaryItemList()}"
-            tools:listitem="@layout/view_name_amount" />
+            tools:listitem="@layout/view_expense" />
 
         <TextView
             android:layout_width="0dp"

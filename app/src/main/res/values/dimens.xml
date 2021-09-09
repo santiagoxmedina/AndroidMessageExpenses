@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="padding_normal">6dp</dimen>
-    <dimen name="small_margin">20dp</dimen>
-    <dimen name="tiny_margin">5dp</dimen>
-    <dimen name="small_radius">10dp</dimen>
-    <dimen name="small_padding">10dp</dimen>
+    <dimen name="padding_2">10dp</dimen>
+    <dimen name="padding_1">5dp</dimen>
+    <dimen name="margin_4">20dp</dimen>
+    <dimen name="margin_3">15dp</dimen>
+    <dimen name="margin_2">15dp</dimen>
+    <dimen name="margin_1">5dp</dimen>
+    <dimen name="radius_2">10dp</dimen>
+    <dimen name="radius_1">5dp</dimen>
 </resources>

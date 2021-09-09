@@ -1,12 +1,10 @@
 package com.sanmed.android.messageexpenses.view.utilities
 
 import com.sanmed.android.messageexpenses.model.exeptions.MessageNotSupportedException
-import com.sanmed.android.messageexpenses.model.expensess_parsers.BancolombiaParser
-import com.sanmed.android.messageexpenses.model.expensess_parsers.EmptyParser
-import com.sanmed.android.messageexpenses.model.expensess_parsers.IExpensesParser
-import com.sanmed.android.messageexpenses.model.expensess_parsers.ScotiaBankParser
+import com.sanmed.android.messageexpenses.model.parsers.BancolombiaParser
+import com.sanmed.android.messageexpenses.model.parsers.IExpensesParser
+import com.sanmed.android.messageexpenses.model.parsers.ScotiaBankParser
 import java.math.BigDecimal
-import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.HashMap
 
@@ -30,7 +28,7 @@ class ExpensesTextUtility {
                     return it.value
                 }
             }
-            throw MessageNotSupportedException()
+            throw MessageNotSupportedException("Parser not found")
         }
 
         fun getPurchasePrice(message: String): BigDecimal {

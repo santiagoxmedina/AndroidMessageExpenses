@@ -1,5 +1,6 @@
 package com.sanmed.android.messageexpenses.view.summary
 
+import com.sanmed.android.messageexpenses.model.helpers.SummaryItemHelper
 import com.sanmed.android.messageexpenses.view.utilities.CurrencyUtilities
 import java.math.BigDecimal
 import java.time.LocalDate
@@ -9,6 +10,7 @@ data class SummaryItemView( val name:String,val amount:BigDecimal,val date:Calen
 
 
     val amountString =  CurrencyUtilities.format(amount)
+    val dateString =  SummaryItemHelper.getDateString(this)
 
     override fun getType(): Int {
         return SummaryItemViewType.Expense

@@ -1,10 +1,9 @@
 package com.sanmed.android.messageexpenses.view.summary
 
-import android.view.View
-import androidx.recyclerview.widget.RecyclerView
-import com.sanmed.android.messageexpenses.databinding.ViewNameAmountBinding
+import com.sanmed.android.messageexpenses.databinding.ViewExpenseBinding
+import com.sanmed.android.messageexpenses.model.helpers.SummaryItemHelper
 
-class SummaryItemViewViewHolder(private val binding: ViewNameAmountBinding) :
+class SummaryItemViewViewHolder(private val binding: ViewExpenseBinding) :
     ISummaryItemViewHolder(binding.root) {
 
     override fun onBind(item: ISummaryItemView?) {
@@ -13,6 +12,7 @@ class SummaryItemViewViewHolder(private val binding: ViewNameAmountBinding) :
                 item.apply {
                     binding.name = name
                     binding.amountString = amountString
+                    binding.dateString = dateString
                     binding.executePendingBindings()
                 }
             }

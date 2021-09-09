@@ -1,4 +1,4 @@
 package com.sanmed.android.messageexpenses.model.exeptions
 
-class MessageNotSupportedException:Exception() {
+class MessageNotSupportedException(message:String = ""):Exception(message) {
 }

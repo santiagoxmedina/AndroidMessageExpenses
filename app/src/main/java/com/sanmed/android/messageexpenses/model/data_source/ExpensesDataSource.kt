@@ -29,18 +29,11 @@ class ExpensesDataSource @Inject constructor(@ApplicationContext private val con
         cursor?.apply {
             if (moveToFirst()) {
                 do {
-                    var msgData = ""
-                    for (idx in 0 until columnCount) {
-                        var summaryItemView: SummaryItemView? = SummaryItemHelper.parseFromSMS(
-                            getString(
-                                idx
-                            )
-                        )
-                        summaryItemView?.let {
-                            result.add(it)
-                        }
+                    SummaryItemHelper.parseFromSMS(
+                        cursor
+                    )?.let {
+                        result.add(it)
                     }
-                    // use msgData
                 } while (moveToNext())
             }
         }?.close()
@@ -55,10 +48,10 @@ class ExpensesDataSource @Inject constructor(@ApplicationContext private val con
 
     private fun getExpensesGroupByMonth(allExpenses: List<SummaryItemView>?): List<ISummaryItemView> {
         val result = mutableListOf<ISummaryItemView>()
-        allExpenses?.let {list->
-            val monthExpensesMap = list.groupBy({MonthExpensesHelper.getMonthId(it)},{it})
+        allExpenses?.let { list ->
+            val monthExpensesMap = list.groupBy({ MonthExpensesHelper.getMonthId(it) }, { it })
             monthExpensesMap.forEach { (month, monthList) ->
-                result.add(MonthExpensesUI(month,monthList))
+                result.add(MonthExpensesUI(month, monthList))
             }
         }
         return result;

@@ -1,4 +1,4 @@
-package com.sanmed.android.messageexpenses.model.expensess_parsers
+package com.sanmed.android.messageexpenses.model.parsers
 
 import java.math.BigDecimal
 import java.util.*

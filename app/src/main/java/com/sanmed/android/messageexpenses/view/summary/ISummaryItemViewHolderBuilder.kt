@@ -4,8 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.sanmed.android.messageexpenses.R
+import com.sanmed.android.messageexpenses.databinding.ViewExpenseBinding
 import com.sanmed.android.messageexpenses.databinding.ViewMonthAmountBinding
-import com.sanmed.android.messageexpenses.databinding.ViewNameAmountBinding
 import com.sanmed.android.messageexpenses.view.month_expenses.MonthExpensesViewHolder
 
 object ISummaryItemViewHolderBuilder {
@@ -19,10 +19,10 @@ object ISummaryItemViewHolderBuilder {
         }
     }
 
-    private fun getViewBindingForExpense(parent: ViewGroup): ViewNameAmountBinding {
+    private fun getViewBindingForExpense(parent: ViewGroup): ViewExpenseBinding {
         return DataBindingUtil.inflate(
             LayoutInflater.from(parent.context),
-            R.layout.view_name_amount,
+            R.layout.view_expense,
             parent,
             false
         )
