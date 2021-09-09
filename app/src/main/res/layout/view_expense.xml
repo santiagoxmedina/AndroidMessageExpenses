@@ -23,7 +23,7 @@
         android:layout_width="match_parent"
         android:padding="@dimen/padding_1"
         app:cardCornerRadius="@dimen/radius_1"
-        android:background="@color/colorSecondary"
+        android:layout_marginTop="@dimen/margin_2"
         android:layout_height="wrap_content">
 
         <LinearLayout

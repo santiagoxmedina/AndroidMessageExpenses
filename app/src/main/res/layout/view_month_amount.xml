@@ -8,9 +8,11 @@
         <variable
             name="monthName"
             type="String" />
+
         <variable
             name="amountString"
             type="String" />
+
         <variable
             name="onSelect"
             type="com.sanmed.android.messageexpenses.model.action.IAction&lt;String,android.view.View>" />
@@ -18,28 +20,30 @@
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_margin="@dimen/margin_1"
-        app:cardCornerRadius="@dimen/margin_2"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_1"
+        app:cardCornerRadius="@dimen/radius_1">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/padding_1"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="@dimen/padding_2">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{monthName}"
-                android:textStyle="bold"
                 android:onClick="@{(x)->onSelect.onAction(monthName,x)}"
+                android:text="@{monthName}"
+
+                android:textAppearance="?textAppearanceHeadline5"
                 tools:text="EPM" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@{amountString}"
+                android:textAppearance="?textAppearanceSubtitle1"
                 tools:text="$5000" />
 
         </LinearLayout>

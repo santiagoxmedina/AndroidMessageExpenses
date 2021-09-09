@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter
 import java.util.*
 
 object MonthExpensesHelper {
-    var dateFormatter:SimpleDateFormat = SimpleDateFormat("MMM, yy", Locale.getDefault())
+    var dateFormatter:SimpleDateFormat = SimpleDateFormat("MMMM yyyy", Locale.getDefault())
     fun getMonthId(item: SummaryItemView): String {
         return if(item.date!=null){
             dateFormatter.format(item.date.time).toUpperCase(Locale.getDefault())
