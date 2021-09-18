@@ -6,7 +6,7 @@ import androidx.lifecycle.asLiveData
 import com.sanmed.android.messageexpenses.model.db.CategoryExpenseDAO
 import com.sanmed.android.messageexpenses.model.entities.CategoryExpenseEntity
 import com.sanmed.android.messageexpenses.model.helpers.CategoryExpenseHelper
-import com.sanmed.android.messageexpenses.view.ICategoryExpenseView
+import com.sanmed.android.messageexpenses.view.categories_expenses.ICategoryExpenseView
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

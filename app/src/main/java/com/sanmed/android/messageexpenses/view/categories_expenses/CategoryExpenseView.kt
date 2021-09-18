@@ -1,6 +1,5 @@
 package com.sanmed.android.messageexpenses.view.categories_expenses
 
-import com.sanmed.android.messageexpenses.view.ICategoryExpenseView
 import com.sanmed.android.messageexpenses.view.utilities.CurrencyUtilities
 import java.math.BigDecimal
 import java.text.NumberFormat

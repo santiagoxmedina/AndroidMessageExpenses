@@ -1,67 +1,97 @@
 package com.sanmed.android.messageexpenses.view.permission
 
+import android.content.Context
 import android.content.pm.PackageManager
 import android.view.View
-import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.result.ActivityResultLauncher
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.LifecycleOwner
 import com.google.android.material.snackbar.Snackbar
 import com.sanmed.android.messageexpenses.R
-import com.sanmed.android.messageexpenses.view.summary.ISummaryItemView
 import com.sanmed.android.messageexpenses.viewmodel.permission.IPermissionViewModel
 
-class PermissionView(val viewModel: IPermissionViewModel) {
+interface IPermissionView {
 
-    private val requestPermissionLauncher =
-        registerForActivityResult(
-            ActivityResultContracts.RequestPermission()
-        ) { isGranted: Boolean ->
-            if (isGranted) {
-                // Permission is granted. Continue the action or workflow in your
-                // app.
-            } else {
-                // Explain to the user that the feature is unavailable because the
-                // features requires a permission that the user has denied. At the
-                // same time, respect the user's decision. Don't link to system
-                // settings in an effort to convince the user to change their
-                // decision.
+    val viewModel: IPermissionViewModel
+    var registerForActivityResult: ActivityResultLauncher<Array<String>>?
+
+    fun onInitPermission() {
+        registerForActivityResult = initRegisterForActivityResult()
+        viewModel.checkingPermission.observe(
+            getPermissionLifecycleOwner(),
+            this::onCheckingPermission
+        )
+    }
+
+    private fun onCheckingPermission(permissions: List<String>) {
+        val pendingPermissions = mutableListOf<String>()
+        permissions.forEach { permission ->
+            when {
+                ContextCompat.checkSelfPermission(
+                    getPermissionContext(), permission
+                ) == PackageManager.PERMISSION_GRANTED -> {
+                    viewModel.onPermissionGranted(permission)
+                }
+                shouldShowRequestPermissionRationale(permission) -> {
+                    val snackbar = Snackbar.make(
+                        getPermissionView(),
+                        R.string.permission_needed,
+                        Snackbar.LENGTH_SHORT
+                    )
+                    snackbar.setAction(
+                        R.string.accept,
+                        onAcceptRequestPermission(arrayListOf(permission))
+                    )
+                    snackbar.show()
+                }
+                else -> {
+                    pendingPermissions.add(permission)
+                    // You can directly ask for the permission.
+                    // The registered ActivityResultCallback gets the result of this request.
+
+                }
             }
         }
 
-    fun onInit(){
-        viewModel.checkingPermission.observe(this, this::onCheckingPermission)
-    }
-
-    private fun onCheckingPermission(permission: String) {
-        when {
-            ContextCompat.checkSelfPermission(
-                this, permission
-            ) == PackageManager.PERMISSION_GRANTED -> {
-                // You can use the API that requires the permission.
-                viewModel.onPermissionGranted(permission)
-            }
-            shouldShowRequestPermissionRationale(permission) -> {
-                // In an educational UI, explain to the user why your app requires this
-                // permission for a specific feature to behave as expected. In this UI,
-                // include a "cancel" or "no thanks" button that allows the user to
-                // continue using your app without granting the permission.
-                val snackbar = Snackbar.make(mBinding.root, R.string.permission_needed, Snackbar.LENGTH_SHORT)
-                snackbar.setAction(R.string.accept,onAcceptRequestPermission(permission))
-                snackbar.show()
-            }
-            else -> {
-                // You can directly ask for the permission.
-                // The registered ActivityResultCallback gets the result of this request.
-                launchPermission(permission)
-            }
+        if (pendingPermissions.isNotEmpty()) {
+            launchPermission(pendingPermissions)
         }
     }
 
-    private fun onAcceptRequestPermission(permission: String): View.OnClickListener? {
-        return View.OnClickListener{
+    private fun onAcceptRequestPermission(permission: List<String>): View.OnClickListener {
+        return View.OnClickListener {
             launchPermission(permission)
         }
     }
-    private fun launchPermission(permission: String){
-        requestPermissionLauncher.launch(permission)
+
+    private fun launchPermission(permission: List<String>) {
+        registerForActivityResult?.launch(permission.toTypedArray())
+    }
+
+    fun shouldShowRequestPermissionRationale(permission: String): Boolean
+    fun getPermissionView(): View
+    fun getPermissionContext(): Context
+    fun getPermissionLifecycleOwner(): LifecycleOwner
+    fun initRegisterForActivityResult(): ActivityResultLauncher<Array<String>>
+
+
+    fun onPermissionResult(permissions: Map<String, Boolean>) {
+        // Handle Permission granted/rejected
+        permissions.entries.forEach {
+            val permissionName = it.key
+            val isGranted = it.value
+            if (isGranted) {
+                // Permission is granted
+                viewModel.onPermissionGranted(permissionName)
+            } else {
+                // Permission is denied
+                val snackbar = Snackbar.make(
+                    getPermissionView(),
+                    R.string.permission_needed,
+                    Snackbar.LENGTH_SHORT
+                )
+                snackbar.show()
+            }
+        }
     }
 }

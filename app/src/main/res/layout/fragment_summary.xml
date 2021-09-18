@@ -11,16 +11,15 @@
 
         <variable
             name="viewModel"
-            type="com.sanmed.android.messageexpenses.view.summary.ISummaryViewModel" />
+            type="com.sanmed.android.messageexpenses.viewmodel.summary.ISummaryViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/gray0"
         android:layout_marginHorizontal="@dimen/margin_2"
+        android:background="@color/gray0"
         tools:context=".view.summary.SummaryFragment">
-
 
 
         <androidx.recyclerview.widget.RecyclerView
@@ -38,17 +37,32 @@
             app:setVisibilityList="@{viewModel.getSummaryItemList()}"
             tools:listitem="@layout/view_expense" />
 
-        <TextView
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/no_expenses"
-            android:textAlignment="center"
-            android:textAppearance="?textAppearanceHeadline5"
+            android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:setVisibilityListInvert="@{viewModel.getSummaryItemList()}" />
+            app:setVisibilityListInvert="@{viewModel.getSummaryItemList()}">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/no_expenses"
+                android:textAlignment="center"
+                android:textAppearance="?textAppearanceHeadline5"
+                />
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/margin_2"
+                android:text="@string/load_expenses"
+                android:onClick="@{()->viewModel.onUpdate()}"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

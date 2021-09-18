@@ -2,7 +2,6 @@ package com.sanmed.android.messageexpenses.view.categories_expenses
 
 import androidx.recyclerview.widget.RecyclerView
 import com.sanmed.android.messageexpenses.databinding.ViewEditCategoryExpenseBinding
-import com.sanmed.android.messageexpenses.view.ICategoryExpenseView
 
 class CategoryExpensesViewHolder(itemView: ViewEditCategoryExpenseBinding) : RecyclerView.ViewHolder(itemView.root) {
 

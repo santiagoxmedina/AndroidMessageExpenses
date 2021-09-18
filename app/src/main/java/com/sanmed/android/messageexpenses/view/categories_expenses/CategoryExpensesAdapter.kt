@@ -8,10 +8,9 @@ import androidx.recyclerview.widget.ListAdapter
 import com.sanmed.android.messageexpenses.R
 import com.sanmed.android.messageexpenses.databinding.ViewEditCategoryExpenseBinding
 import com.sanmed.android.messageexpenses.model.action.IAction
-import com.sanmed.android.messageexpenses.view.DiffExpense
-import com.sanmed.android.messageexpenses.view.ICategoryExpenseView
+import com.sanmed.android.messageexpenses.view.diff.DiffExpense
 
-class CategoryExpensesAdapter(diff: DiffExpense,private val onEdit:IAction<ICategoryExpenseView,View>) : ListAdapter<ICategoryExpenseView?, CategoryExpensesViewHolder>(diff) {
+class CategoryExpensesAdapter(diff: DiffExpense, private val onEdit:IAction<ICategoryExpenseView,View>) : ListAdapter<ICategoryExpenseView?, CategoryExpensesViewHolder>(diff) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryExpensesViewHolder {

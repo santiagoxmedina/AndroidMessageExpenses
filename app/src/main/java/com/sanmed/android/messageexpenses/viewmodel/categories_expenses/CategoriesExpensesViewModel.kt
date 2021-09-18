@@ -3,7 +3,7 @@ package com.sanmed.android.messageexpenses.viewmodel.categories_expenses
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.sanmed.android.messageexpenses.model.repository.ICategoryExpensesRepository
-import com.sanmed.android.messageexpenses.view.ICategoryExpenseView
+import com.sanmed.android.messageexpenses.view.categories_expenses.ICategoryExpenseView
 import com.sanmed.android.messageexpenses.view.add_category_expense.IAddCategoryExpenseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.GlobalScope

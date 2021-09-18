@@ -1,7 +1,7 @@
 package com.sanmed.android.messageexpenses.view.add_category_expense
 
 import androidx.lifecycle.LiveData
-import com.sanmed.android.messageexpenses.view.ICategoryExpenseView
+import com.sanmed.android.messageexpenses.view.categories_expenses.ICategoryExpenseView
 
 interface IAddCategoryExpenseViewModel:IAddCategoryExpenseView {
 

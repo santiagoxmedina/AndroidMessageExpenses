@@ -1,4 +1,4 @@
-package com.sanmed.android.messageexpenses.view
+package com.sanmed.android.messageexpenses.view.categories_expenses
 
 import java.math.BigDecimal
 

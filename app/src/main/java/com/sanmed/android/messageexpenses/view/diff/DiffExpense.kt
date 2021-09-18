@@ -1,6 +1,7 @@
-package com.sanmed.android.messageexpenses.view
+package com.sanmed.android.messageexpenses.view.diff
 
 import androidx.recyclerview.widget.DiffUtil
+import com.sanmed.android.messageexpenses.view.categories_expenses.ICategoryExpenseView
 
 class DiffExpense: DiffUtil.ItemCallback<ICategoryExpenseView?>() {
 

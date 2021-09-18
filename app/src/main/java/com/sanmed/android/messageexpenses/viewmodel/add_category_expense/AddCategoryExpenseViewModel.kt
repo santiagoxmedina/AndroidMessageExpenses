@@ -7,7 +7,7 @@ import com.sanmed.android.messageexpenses.R
 import com.sanmed.android.messageexpenses.model.action.ActionType
 import com.sanmed.android.messageexpenses.model.helpers.CategoryExpenseHelper
 import com.sanmed.android.messageexpenses.model.repository.ICategoryExpensesRepository
-import com.sanmed.android.messageexpenses.view.ICategoryExpenseView
+import com.sanmed.android.messageexpenses.view.categories_expenses.ICategoryExpenseView
 import com.sanmed.android.messageexpenses.view.add_category_expense.IAddCategoryExpenseViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.GlobalScope

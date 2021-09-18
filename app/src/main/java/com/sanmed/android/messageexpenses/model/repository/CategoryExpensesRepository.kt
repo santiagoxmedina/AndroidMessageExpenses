@@ -2,7 +2,7 @@ package com.sanmed.android.messageexpenses.model.repository
 
 import androidx.lifecycle.LiveData
 import com.sanmed.android.messageexpenses.model.data_source.ILocalCategoryExpensesDataSource
-import com.sanmed.android.messageexpenses.view.ICategoryExpenseView
+import com.sanmed.android.messageexpenses.view.categories_expenses.ICategoryExpenseView
 import javax.inject.Inject
 
 class CategoryExpensesRepository @Inject constructor(private val categoryExpensesDataSource: ILocalCategoryExpensesDataSource):ICategoryExpensesRepository  {

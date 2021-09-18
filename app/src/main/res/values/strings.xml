@@ -13,11 +13,18 @@
     <string name="edit">Edit</string>
     <string name="add">Add</string>
     <string name="edit_category_expense">Edit category</string>
-    <string name="no_expenses">Without expenses</string>
+    <string name="no_expenses">It seems that you still do not charge your expenses</string>
     <string name="update">Update</string>
     <string name="permission_needed">Need permissions</string>
     <string name="filter">filter</string>
     <string name="sort_by_date">Sort by date</string>
     <string name="group_by_month">Group by month</string>
     <string name="group_by_name">Group by name</string>
+    <string name="load_expenses">Do we charge the expenses you have?</string>
+    <string name="show_expenses">Show expenses</string>
+    <string name="show_month_expenses">Show month expenses</string>
+    <string name="start1">He who knows what he spends, knows what he has</string>
+    <string name="budget">Budget</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

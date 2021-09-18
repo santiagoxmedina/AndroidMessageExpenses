@@ -2,25 +2,38 @@ package com.sanmed.android.messageexpenses.viewmodel.permission
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import java.security.Permission
 
-interface PermissionViewModel {
-    var smsPermission: Boolean
-     val smsPermissionName: String
-        get() = "android.permission.READ_SMS"
-    private val _checkingPermission: MutableLiveData<String>
-        get() = MutableLiveData<String>()
-    val checkingPermission: LiveData<String> get() = _checkingPermission
+interface IPermissionViewModel {
 
-    fun checkPermission(permission: String) {
-        _checkingPermission.value = permission
+
+    val checkingPermission: LiveData<List<String>> get() = getCheckingPermission()
+
+    fun checkPermission(permission: List<String>) {
+        getCheckingPermission().value = permission
     }
 
+    fun getCheckingPermission():MutableLiveData<List<String>>
+
     fun onPermissionGranted(permission: String) {
-        if (smsPermissionName == permission) {
-            smsPermission = true
+        if (getPermissionName().contains(permission)) {
+            setPermission(true)
             onContinueAfterPermissionIsGranted()
+        }
+    }
+
+    fun getPermissionName():List<String>
+    fun setPermission(permission:Boolean)
+    fun hasPermission():Boolean
+
+    fun checkPermissionGranted(permissionName:List<String>) {
+        if (hasPermission()) {
+            onContinueAfterPermissionIsGranted()
+        } else {
+            checkPermission(permissionName)
         }
     }
 
     fun onContinueAfterPermissionIsGranted()
 }
+

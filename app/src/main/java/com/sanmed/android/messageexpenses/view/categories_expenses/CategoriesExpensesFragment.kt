@@ -10,8 +10,7 @@ import com.sanmed.android.messageexpenses.R
 import com.sanmed.android.messageexpenses.databinding.FragmentCategoriesExpensesBinding
 import com.sanmed.android.messageexpenses.model.action.IAction
 import com.sanmed.android.messageexpenses.model.helpers.DialogHelper
-import com.sanmed.android.messageexpenses.view.DiffExpense
-import com.sanmed.android.messageexpenses.view.ICategoryExpenseView
+import com.sanmed.android.messageexpenses.view.diff.DiffExpense
 import com.sanmed.android.messageexpenses.view.add_category_expense.AddCategoryExpenseDialogFragmentHandler
 import com.sanmed.android.messageexpenses.viewmodel.categories_expenses.CategoriesExpensesViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -44,7 +43,7 @@ class CategoriesExpensesFragment : Fragment() {
 
     private fun getOnEditCategoryAction(): IAction<ICategoryExpenseView,View> {
         return  object: IAction<ICategoryExpenseView,View>{
-            override fun onAction(categoryExpenseView: ICategoryExpenseView,view: View) {
+            override fun onAction(categoryExpenseView: ICategoryExpenseView, view: View) {
                 val popup = PopupMenu(requireContext(), view)
                 val inflater: MenuInflater = popup.menuInflater
                 inflater.inflate(R.menu.options_menu, popup.menu)

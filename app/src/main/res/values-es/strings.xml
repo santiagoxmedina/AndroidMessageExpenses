@@ -12,11 +12,16 @@
     <string name="add_category_expense">Agregar categoria</string>
     <string name="add">Agregar</string>
     <string name="edit_category_expense">Editar categoria</string>
-    <string name="no_expenses">Sin gastos</string>
+    <string name="no_expenses">Parece que aún no cargas tus gastos</string>
     <string name="update">Actualizar</string>
     <string name="permission_needed">Permisos necesarios</string>
     <string name="filter">Filtrar</string>
     <string name="sort_by_date">Ordenar por fecha</string>
     <string name="group_by_name">Agrupar por nombre</string>
     <string name="group_by_month">Agrupar por Mes</string>
+    <string name="load_expenses">¿Cargamos lo gastos que tienes?</string>
+    <string name="show_expenses">Ver gastos</string>
+    <string name="show_month_expenses">Ver gastos por mes</string>
+    <string name="start1">El que sabe lo que gasta, sabe lo que tiene</string>
+    <string name="budget">Presupuesto</string>
 </resources>

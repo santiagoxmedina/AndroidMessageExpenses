@@ -7,10 +7,10 @@
 
         <variable
             name="expense"
-            type="com.sanmed.android.messageexpenses.view.ICategoryExpenseView" />
+            type="com.sanmed.android.messageexpenses.view.categories_expenses.ICategoryExpenseView" />
         <variable
             name="onEdit"
-            type="com.sanmed.android.messageexpenses.model.action.IAction&lt;com.sanmed.android.messageexpenses.view.ICategoryExpenseView,android.view.View>" />
+            type="com.sanmed.android.messageexpenses.model.action.IAction&lt;com.sanmed.android.messageexpenses.view.categories_expenses.ICategoryExpenseView,android.view.View>" />
     </data>
 
     <com.google.android.material.card.MaterialCardView

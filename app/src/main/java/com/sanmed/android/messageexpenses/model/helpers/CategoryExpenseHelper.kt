@@ -2,7 +2,7 @@ package com.sanmed.android.messageexpenses.model.helpers
 
 import com.sanmed.android.messageexpenses.model.entities.CategoryExpenseEntity
 import com.sanmed.android.messageexpenses.view.categories_expenses.CategoryExpenseView
-import com.sanmed.android.messageexpenses.view.ICategoryExpenseView
+import com.sanmed.android.messageexpenses.view.categories_expenses.ICategoryExpenseView
 import java.math.BigDecimal
 
 class CategoryExpenseHelper {
@@ -12,7 +12,7 @@ class CategoryExpenseHelper {
             return  CategoryExpenseEntity(categoryExpenseView.getId(),categoryExpenseView.getName(),categoryExpenseView.getAmount())
         }
 
-        fun getCategoryExpenseViewFromCategoryExpenseEntity(categoryExpenseEntity: CategoryExpenseEntity):ICategoryExpenseView{
+        fun getCategoryExpenseViewFromCategoryExpenseEntity(categoryExpenseEntity: CategoryExpenseEntity): ICategoryExpenseView {
             return CategoryExpenseView(categoryExpenseEntity.id,categoryExpenseEntity.name,categoryExpenseEntity.amount,0f,0)
         }
         fun getListCategoryExpenseViewFromListCategoryExpenseEntity(categoryExpenseView: List<ICategoryExpenseView?>):List<CategoryExpenseEntity>{
