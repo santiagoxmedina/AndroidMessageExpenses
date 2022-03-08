@@ -3,23 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_navigation"
-    app:startDestination="@id/fragment_summary">
-    
+    app:startDestination="@id/summaryFragment">
+
     <fragment
-        android:id="@+id/fragment_summary"
-        android:name="com.sanmed.android.messageexpenses.view.summary.SummaryFragment"
+        android:id="@+id/summaryFragment"
+        android:name="com.sanmed.android.balance.view.summary.SummaryFragment"
         android:label="fragment_summary"
         tools:layout="@layout/fragment_summary" />
     <fragment
-        android:id="@+id/navigation_expenses"
-        android:name="com.sanmed.android.messageexpenses.view.categories_expenses.CategoriesExpensesFragment"
+        android:id="@+id/expensesFragment"
+        android:name="com.sanmed.android.balance.view.categories_expenses.CategoriesExpensesFragment"
         android:label="fragment_expenses"
         tools:layout="@layout/fragment_categories_expenses" />
-
-    <fragment
-        android:id="@+id/fragment_wallet"
-        android:name="com.sanmed.android.messageexpenses.view.wallet.WalletFragment"
-        android:label="fragment_wallet"
-        tools:layout="@layout/fragment_wallet" />
 
 </navigation>

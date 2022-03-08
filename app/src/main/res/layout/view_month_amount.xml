@@ -15,7 +15,7 @@
 
         <variable
             name="onSelect"
-            type="com.sanmed.android.messageexpenses.model.action.IAction&lt;String,android.view.View>" />
+            type="com.sanmed.android.balance.model.action.IAction&lt;String,android.view.View>" />
     </data>
 
     <com.google.android.material.card.MaterialCardView

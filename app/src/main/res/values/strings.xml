@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">Piger</string>
+    <string name="app_name" >Balance</string>
     <string name="LoadSMSButton">Load SMS</string>
     <string name="expenses">Expenses</string>
     <string name="add_expense">add expense</string>

@@ -24,4 +24,5 @@
     <string name="show_month_expenses">Ver gastos por mes</string>
     <string name="start1">El que sabe lo que gasta, sabe lo que tiene</string>
     <string name="budget">Presupuesto</string>
+    <string name="app_name">Tu Saldo</string>
 </resources>

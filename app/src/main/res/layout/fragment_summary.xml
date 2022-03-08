@@ -11,7 +11,7 @@
 
         <variable
             name="viewModel"
-            type="com.sanmed.android.messageexpenses.viewmodel.summary.ISummaryViewModel" />
+            type="com.sanmed.android.balance.viewmodel.summary.ISummaryViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

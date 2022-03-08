@@ -3,7 +3,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.sanmed.android.messageexpenses.viewmodel.categories_expenses.CategoriesExpensesViewModel" />
+            type="com.sanmed.android.balance.viewmodel.categories_expenses.CategoriesExpensesViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"

@@ -4,7 +4,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.sanmed.android.messageexpenses.view.add_category_expense.IAddCategoryExpenseView" />
+            type="com.sanmed.android.balance.view.add_category_expense.IAddCategoryExpenseView" />
     </data>
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
