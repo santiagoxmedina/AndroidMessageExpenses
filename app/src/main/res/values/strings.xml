@@ -28,4 +28,6 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="available">Available</string>
     <string name="edit_expense">Edit expense</string>
+    <string name="invalid_amount">invalid amount</string>
+    <string name="invalid_name">Invalid name</string>
 </resources>

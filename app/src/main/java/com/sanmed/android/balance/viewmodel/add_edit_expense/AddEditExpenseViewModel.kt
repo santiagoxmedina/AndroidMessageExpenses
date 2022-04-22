@@ -9,21 +9,19 @@ import com.sanmed.android.balance.model.action.ActionType
 import com.sanmed.android.balance.model.helpers.ExpenseHelper
 import com.sanmed.android.balance.model.repository.IExpensesRepository
 import com.sanmed.android.balance.view.expense.ExpenseView
+import com.sanmed.android.balance.viewmodel.expenseDialog.ExpenseDialogViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.*
 import timber.log.Timber
+import java.math.BigDecimal
 import javax.inject.Inject
 
 class AddEditExpenseViewModel @Inject constructor(
     private val expensesRepository: IExpensesRepository,
     @ApplicationContext private val context: Context
-) :
+) : ExpenseDialogViewModel(),
     IAddEditExpenseViewModel<ExpenseView> {
-    private val nameTextMutable = MutableLiveData("")
-    private val amountTextMutable = MutableLiveData("")
-    private val titleTextMutable = MutableLiveData("")
-    private val buttonAcceptTextMutable = MutableLiveData("")
-    private val buttonCancelTextMutable = MutableLiveData("")
+
     private val _dismiss = MutableLiveData<Boolean>()
     private val _showCategoryExpenseDialog = MutableLiveData<Boolean>()
     private var actionType = ActionType.Add
@@ -58,21 +56,33 @@ class AddEditExpenseViewModel @Inject constructor(
         expensesRepository.delete(actionExpenseView)
     }
 
+    private fun checkValidData(success: (name: String, amount: BigDecimal) -> Unit) {
+        val name = nameTextMutable.value
+        var amount = amountTextMutable.value?.toBigDecimalOrNull()
+        when {
+            !isValidName(name) -> nameErrorTextMutable.value =
+                context.getString(R.string.invalid_name)
+            !isValidAmount(amount) -> amountErrorTextMutable.value =
+                context.getString(R.string.invalid_amount)
+            else -> {
+                success(name!!, amount!!)
+                onDismiss()
+            }
+        }
+    }
+
     override fun onAccept() {
-        try {
+        checkValidData { name, amount ->
             viewModelScope.launch {
                 withContext(Dispatchers.IO) {
                     when (actionType) {
-                        ActionType.Add -> addExpense()
+                        ActionType.Add -> addExpense(name, amount)
                         ActionType.Edit ->
-                            editExpense()
+                            editExpense(name, amount)
                     }
                 }
             }
-        } catch (nfex: NumberFormatException) {
-            Timber.e(nfex)
         }
-        onDismiss()
     }
 
     override fun onClose() {
@@ -80,52 +90,42 @@ class AddEditExpenseViewModel @Inject constructor(
     }
 
 
-    private fun editExpense() {
-        try {
-            val amount = amountTextMutable.value!!.toBigDecimal()
-            actionExpenseView.name = nameTextMutable.value!!
-            actionExpenseView.amount = amount
+    private fun editExpense(_name: String, _amount: BigDecimal) {
+        actionExpenseView.apply {
+            name = _name
+            amount = _amount
             expensesRepository.editExpense(
                 actionExpenseView
 
             )
-        } catch (ex: NumberFormatException) {
-            //TODO:show error to user
         }
     }
 
-    private fun addExpense() {
-        try {
-            val amount = amountTextMutable.value!!.toBigDecimal()
-            actionExpenseView = ExpenseHelper.create(
-                nameTextMutable.value!!, amount
+    private fun addExpense(name: String, amount: BigDecimal) {
+        expensesRepository.addExpense(
+            ExpenseHelper.create(
+                name, amount
             )
-            expensesRepository.addExpense(actionExpenseView)
-        } catch (ex: NumberFormatException) {
-            //TODO:show error to user
-        }
+        )
+    }
 
+    private fun isValidName(value: String?): Boolean {
+        return !value.isNullOrEmpty()
+    }
+
+    private fun isValidAmount(amount: BigDecimal?): Boolean {
+        amount?.let {
+            return amount!= BigDecimal.ZERO && amount.toString().isNotEmpty()
+        }
+        return false
     }
 
     private fun onDismiss() {
+        nameErrorTextMutable.value = ""
+        amountErrorTextMutable.value = ""
         _dismiss.value = true
     }
 
-    override fun getNameText(): MutableLiveData<String> {
-        return nameTextMutable
-    }
-
-    override fun getAmountText(): MutableLiveData<String> {
-        return amountTextMutable
-    }
-
-    override fun getTitle(): LiveData<String> {
-        return titleTextMutable
-    }
-
-    override fun getOkButtonText(): LiveData<String> {
-        return buttonAcceptTextMutable
-    }
 
     override fun onEditExpense(expense: ExpenseView) {
         actionType = ActionType.Edit
@@ -136,6 +136,8 @@ class AddEditExpenseViewModel @Inject constructor(
         nameTextMutable.value = actionExpenseView.name
         amountTextMutable.value = actionExpenseView.amount.toString()
         _showCategoryExpenseDialog.value = true
+        amountErrorTextMutable.value = ""
+        nameErrorTextMutable.value = ""
     }
 
     override fun onAddExpense() {
@@ -146,13 +148,13 @@ class AddEditExpenseViewModel @Inject constructor(
         nameTextMutable.value = ""
         amountTextMutable.value = "0"
         _showCategoryExpenseDialog.value = true
+        amountErrorTextMutable.value = ""
+        nameErrorTextMutable.value = ""
     }
 
     override fun onAddExpenseCompleted() {
         _showCategoryExpenseDialog.value = false
     }
 
-    override fun getCancelButtonText(): LiveData<String> {
-        return buttonCancelTextMutable
-    }
+
 }

@@ -4,6 +4,7 @@ import android.view.View
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.textfield.TextInputLayout
 import com.sanmed.android.balance.model.helpers.SummaryItemHelper
 import com.sanmed.android.balance.view.summary.ISummaryItemView
 import com.sanmed.android.balance.view.summary.SummaryItemAdapter
@@ -62,5 +63,11 @@ object BindingAdapter {
     fun hideOnEmptyText(view: View, text: String?) {
         view.visibility = if (text.isNullOrEmpty()) View.GONE else View.VISIBLE
 
+    }
+
+    @BindingAdapter("setError")
+    @JvmStatic
+    fun setError(view: TextInputLayout, text: String?) {
+        view.error = text
     }
 }

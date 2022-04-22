@@ -8,6 +8,7 @@ import com.sanmed.android.balance.model.action.ActionType
 import com.sanmed.android.balance.model.helpers.CategoryExpenseHelper
 import com.sanmed.android.balance.model.repository.ICategoryExpensesRepository
 import com.sanmed.android.balance.view.categories_expenses.ICategoryExpenseView
+import com.sanmed.android.balance.viewmodel.expenseDialog.ExpenseDialogViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.*
 import timber.log.Timber
@@ -16,13 +17,8 @@ import javax.inject.Inject
 class AddEditCategoryExpenseViewModel @Inject constructor(
     private val categoryExpensesRepository: ICategoryExpensesRepository,
     @ApplicationContext private val context: Context
-) :
+) : ExpenseDialogViewModel(),
     IAddEditExpenseViewModel<ICategoryExpenseView> {
-    private val nameTextMutable = MutableLiveData("")
-    private val amountTextMutable = MutableLiveData("")
-    private val titleTextMutable = MutableLiveData("")
-    private val buttonAcceptTextMutable = MutableLiveData("")
-    private val buttonCancelTextMutable = MutableLiveData("")
     private val _dismiss = MutableLiveData<Boolean>()
     private val _showCategoryExpenseDialog = MutableLiveData<Boolean>()
     private var actionType = ActionType.Add
@@ -102,22 +98,6 @@ class AddEditCategoryExpenseViewModel @Inject constructor(
         _dismiss.value = true
     }
 
-    override fun getNameText(): MutableLiveData<String> {
-        return nameTextMutable
-    }
-
-    override fun getAmountText(): MutableLiveData<String> {
-        return amountTextMutable
-    }
-
-    override fun getTitle(): LiveData<String> {
-        return titleTextMutable
-    }
-
-    override fun getOkButtonText(): LiveData<String> {
-        return buttonAcceptTextMutable
-    }
-
     override fun onEditExpense(expense: ICategoryExpenseView) {
         actionType = ActionType.Edit
         actionCategoryExpenseView = expense
@@ -141,9 +121,5 @@ class AddEditCategoryExpenseViewModel @Inject constructor(
 
     override fun onAddExpenseCompleted() {
         _showCategoryExpenseDialog.value = false
-    }
-
-    override fun getCancelButtonText(): LiveData<String> {
-        return buttonCancelTextMutable
     }
 }

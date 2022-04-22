@@ -27,4 +27,6 @@
     <string name="app_name">Tu Saldo</string>
     <string name="available">Disponible</string>
     <string name="edit_expense">Editar gasto</string>
+    <string name="invalid_amount">Monto no válido</string>
+    <string name="invalid_name">Nombre no válido</string>
 </resources>
