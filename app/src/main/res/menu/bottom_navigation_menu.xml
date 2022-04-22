@@ -1,5 +1,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
+        android:id="@+id/budgetFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_pie_char"
+        android:title="@string/budget"/>
+    <item
         android:id="@+id/navigation_summary"
         android:enabled="true"
         android:icon="@drawable/ic_money_bag"
@@ -9,10 +14,5 @@
         android:enabled="true"
         android:icon="@drawable/ic_category"
         android:title="@string/category"/>
-    <item
-        android:id="@+id/navigation_wallet"
-        android:enabled="true"
-        android:icon="@drawable/ic_pie_char"
-        android:title="@string/budget"/>
 
 </menu>

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_navigation"
-    app:startDestination="@id/summaryFragment">
+    app:startDestination="@id/budgetFragment">
 
     <fragment
         android:id="@+id/summaryFragment"
@@ -15,5 +15,10 @@
         android:name="com.sanmed.android.balance.view.categories_expenses.CategoriesExpensesFragment"
         android:label="fragment_expenses"
         tools:layout="@layout/fragment_categories_expenses" />
+    <fragment
+        android:id="@+id/budgetFragment"
+        android:name="com.sanmed.android.balance.view.budget.BudgetFragment"
+        android:label="@string/budget"
+        tools:layout="@layout/fragment_budget" />
 
 </navigation>

@@ -1,59 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/margin_2"
+    android:padding="@dimen/padding_1"
+    app:cardCornerRadius="@dimen/radius_1">
 
-    <data>
-
-        <variable
-            name="name"
-            type="String" />
-        <variable
-            name="amountString"
-            type="String" />
-        <variable
-            name="dateString"
-            type="String" />
-        <variable
-            name="onSelect"
-            type="com.sanmed.android.balance.model.action.IAction&lt;String,android.view.View>" />
-    </data>
-
-    <com.google.android.material.card.MaterialCardView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:padding="@dimen/padding_1"
-        app:cardCornerRadius="@dimen/radius_1"
-        android:layout_marginTop="@dimen/margin_2"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/padding_2">
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/padding_2"
-            android:orientation="vertical">
+            android:text="@{name}"
+            android:textAppearance="?textAppearanceHeadline5"
+            tools:text="EPM" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@{name}"
-                android:textAppearance="?textAppearanceHeadline5"
-                android:onClick="@{(x)->onSelect.onAction(name,x)}"
-                tools:text="EPM" />
+        <TextView
+            android:id="@+id/amount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{amountString}"
+            android:textAppearance="?textAppearanceSubtitle1"
+            tools:text="$5000" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:textAppearance="?textAppearanceSubtitle1"
-                android:layout_height="wrap_content"
-                android:text="@{amountString}"
-                tools:text="$5000" />
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{dateString}"
+            android:textAppearance="?textAppearanceOverline"
+            tools:text="12/2/2022" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?textAppearanceOverline"
-                android:text="@{dateString}"
-                tools:text="$5000" />
-
-        </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
-</layout>
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

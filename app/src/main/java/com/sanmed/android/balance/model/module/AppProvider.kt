@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.sanmed.android.balance.model.db.AppDataBase
 import com.sanmed.android.balance.model.db.CategoryExpenseDAO
+import com.sanmed.android.balance.model.db.ExpenseDAO
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -27,5 +28,10 @@ object AppProvider {
     @Provides
     fun provideCategoryExpensesDAO(db: AppDataBase): CategoryExpenseDAO {
         return db.categoryExpensesDAO()
+    }
+
+    @Provides
+    fun provideExpensesDAO(db: AppDataBase): ExpenseDAO {
+        return db.expenseDAO()
     }
 }

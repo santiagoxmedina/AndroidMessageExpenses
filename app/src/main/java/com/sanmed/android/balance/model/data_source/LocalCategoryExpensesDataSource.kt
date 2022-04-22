@@ -10,22 +10,38 @@ import com.sanmed.android.balance.view.categories_expenses.ICategoryExpenseView
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class LocalCategoryExpensesDataSource @Inject constructor(private val categoryExpensesDAO: CategoryExpenseDAO):ILocalCategoryExpensesDataSource {
+class LocalCategoryExpensesDataSource @Inject constructor(private val categoryExpensesDAO: CategoryExpenseDAO) :
+    ILocalCategoryExpensesDataSource {
     private val allTeams: Flow<List<CategoryExpenseEntity>> = categoryExpensesDAO.getAll()
 
     override fun addCategory(categoryExpenseView: ICategoryExpenseView) {
-        categoryExpensesDAO.save(CategoryExpenseHelper.getCategoryExpenseEntityFromCategoryExpenseView(categoryExpenseView))
+        categoryExpensesDAO.save(
+            CategoryExpenseHelper.getCategoryExpenseEntityFromCategoryExpenseView(
+                categoryExpenseView
+            )
+        )
     }
 
     override fun getCategoriesExpenses(): LiveData<List<ICategoryExpenseView?>> {
-        return Transformations.map(allTeams.asLiveData(),CategoryExpenseHelper::getListCategoryExpenseEntityFromListCategoryExpenseView)
+        return Transformations.map(
+            allTeams.asLiveData(),
+            CategoryExpenseHelper::getListCategoryExpenseEntityFromListCategoryExpenseView
+        )
     }
 
     override fun delete(categoryExpenseView: ICategoryExpenseView) {
-        categoryExpensesDAO.delete(CategoryExpenseHelper.getCategoryExpenseEntityFromCategoryExpenseView(categoryExpenseView))
+        categoryExpensesDAO.delete(
+            CategoryExpenseHelper.getCategoryExpenseEntityFromCategoryExpenseView(
+                categoryExpenseView
+            )
+        )
     }
 
     override fun editCategory(categoryExpenseView: ICategoryExpenseView) {
-        categoryExpensesDAO.update(CategoryExpenseHelper.getCategoryExpenseEntityFromCategoryExpenseView(categoryExpenseView))
+        categoryExpensesDAO.update(
+            CategoryExpenseHelper.getCategoryExpenseEntityFromCategoryExpenseView(
+                categoryExpenseView
+            )
+        )
     }
 }

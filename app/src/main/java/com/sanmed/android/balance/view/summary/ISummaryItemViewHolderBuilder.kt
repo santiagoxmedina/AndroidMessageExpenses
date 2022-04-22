@@ -20,9 +20,8 @@ object ISummaryItemViewHolderBuilder {
     }
 
     private fun getViewBindingForExpense(parent: ViewGroup): ViewExpenseBinding {
-        return DataBindingUtil.inflate(
+        return ViewExpenseBinding.inflate(
             LayoutInflater.from(parent.context),
-            R.layout.view_expense,
             parent,
             false
         )

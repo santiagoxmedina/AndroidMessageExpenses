@@ -9,7 +9,7 @@ class MonthExpensesViewHolder (private val binding: ViewMonthAmountBinding) :
 
     override fun onBind(item: ISummaryItemView?) {
         item?.let {
-            if(item is MonthExpensesUI){
+            if(item is MonthExpensesView){
                 item.apply {
                     binding.monthName = month
                     binding.amountString = amountString

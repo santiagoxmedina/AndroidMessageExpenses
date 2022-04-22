@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
             name="viewModel"
-            type="com.sanmed.android.balance.view.add_category_expense.IAddCategoryExpenseView" />
+            type="com.sanmed.android.balance.viewmodel.expenseDialog.IExpenseDialogViewModel" />
     </data>
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
@@ -14,9 +15,24 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_2"
-            android:layout_marginEnd="@dimen/margin_2"
-            android:layout_height="wrap_content">
+            android:layout_marginEnd="@dimen/margin_2">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/close"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{()->viewModel.onClose()}"
+                app:icon="@android:drawable/ic_menu_close_clear_cancel"
+                app:iconGravity="textEnd"
+                app:iconSize="@dimen/size_2"
+                app:layout_constraintBottom_toTopOf="@+id/title_text_view"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/title_text_view"
@@ -27,47 +43,54 @@
                 android:textAlignment="center"
                 android:textAllCaps="true"
                 android:textAppearance="?textAppearanceHeadline4"
+                app:layout_constraintBottom_toTopOf="@+id/name_text_input_layout"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/close" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/name_text_input_layout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_2"
                 android:hint="@string/name"
+                app:layout_constraintBottom_toTopOf="@+id/value_text_input_layout"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 app:layout_constraintTop_toBottomOf="@+id/title_text_view">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:inputType="textCapWords"
-                    android:text="@={viewModel.getNameText()}"
-                    android:layout_height="wrap_content" />
+                    android:text="@={viewModel.getNameText()}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/value_text_input_layout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_2"
                 android:hint="@string/value"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/name_text_input_layout">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:inputType="numberDecimal"
-                    android:text="@={viewModel.getAmountText()}"
-                    android:layout_height="wrap_content" />
+                    android:text="@={viewModel.getAmountText()}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout
+                android:id="@+id/linearLayout2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_2"
@@ -75,6 +98,7 @@
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/value_text_input_layout">
 
@@ -82,10 +106,12 @@
                     style="@style/Theme.MaterialComponents.BottomSheetDialog"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="?colorAccent"
                     android:layout_weight="1"
+                    android:backgroundTint="?colorAccent"
                     android:onClick="@{()->viewModel.onCancel()}"
-                    android:text="@string/cancel" />
+                    tools:text="@string/delete"
+                    app:hideOnEmptyText="@{viewModel.getCancelButtonText()}"
+                    android:text="@{viewModel.getCancelButtonText()}" />
 
                 <com.google.android.material.button.MaterialButton
                     style="@style/Theme.MaterialComponents.BottomSheetDialog"
@@ -93,6 +119,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_2"
                     android:layout_weight="1"
+                    tools:text="@string/accept"
                     android:onClick="@{()->viewModel.onAccept()}"
                     android:text="@{viewModel.getOkButtonText()}" />
             </LinearLayout>

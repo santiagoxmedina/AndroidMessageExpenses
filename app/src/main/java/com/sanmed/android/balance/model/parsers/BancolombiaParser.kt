@@ -1,5 +1,6 @@
 package com.sanmed.android.balance.model.parsers
 
+import com.sanmed.android.balance.model.helpers.CalendarHelper
 import java.math.BigDecimal
 import java.text.SimpleDateFormat
 import java.util.*
@@ -34,13 +35,12 @@ class BancolombiaParser : IExpensesParser {
 
     override fun getPurchaseDate(message: String):Calendar? {
         val regexValue = " \\d{1,2}:\\d{1,2}. \\d{1,2}/\\d{1,2}/\\d{1,4} ".toRegex();
-        var match = regexValue.find(message)
-        var result: String
-        result = match?.value ?: ""
+        val match = regexValue.find(message)
+        var result: String = match?.value ?: ""
         result = result.replace(" ", "")
         result = result.replace(".", " ")
 
-        val format = SimpleDateFormat("H:mm dd/MM/yyyy",Locale.getDefault())
+        val format = SimpleDateFormat(CalendarHelper.BANCOLOMBIA_FORMAT,Locale.getDefault())
         var calendar:Calendar? = null
         format.parse(result)?.let {
             calendar = Calendar.getInstance()

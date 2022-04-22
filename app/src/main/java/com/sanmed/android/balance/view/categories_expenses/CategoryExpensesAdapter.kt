@@ -8,9 +8,9 @@ import androidx.recyclerview.widget.ListAdapter
 import com.sanmed.android.balance.R
 import com.sanmed.android.balance.databinding.ViewEditCategoryExpenseBinding
 import com.sanmed.android.balance.model.action.IAction
-import com.sanmed.android.balance.view.diff.DiffExpense
+import com.sanmed.android.balance.view.diff.DiffCategoryExpenseView
 
-class CategoryExpensesAdapter(diff: DiffExpense, private val onEdit:IAction<ICategoryExpenseView,View>) : ListAdapter<ICategoryExpenseView?, CategoryExpensesViewHolder>(diff) {
+class CategoryExpensesAdapter(diff: DiffCategoryExpenseView, private val onEdit:IAction<ICategoryExpenseView,View>) : ListAdapter<ICategoryExpenseView?, CategoryExpensesViewHolder>(diff) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryExpensesViewHolder {

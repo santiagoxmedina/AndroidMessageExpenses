@@ -1,6 +1,7 @@
 package com.sanmed.android.balance.view.adapters
 
 import android.view.View
+import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.sanmed.android.balance.model.helpers.SummaryItemHelper
@@ -54,5 +55,12 @@ object BindingAdapter {
         animator?.let {
             view.itemAnimator = it
         }
+    }
+
+    @BindingAdapter("hideOnEmptyText")
+    @JvmStatic
+    fun hideOnEmptyText(view: View, text: String?) {
+        view.visibility = if (text.isNullOrEmpty()) View.GONE else View.VISIBLE
+
     }
 }

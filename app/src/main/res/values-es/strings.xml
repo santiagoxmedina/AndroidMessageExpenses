@@ -1,7 +1,7 @@
 <resources>
     <string name="LoadSMSButton">Leer Mensajes</string>
     <string name="expenses">Expenses</string>
-    <string name="add_expense">add expense</string>
+    <string name="add_expense">Agregar gasto</string>
     <string name="name">Nombre</string>
     <string name="value">Valor</string>
     <string name="cancel">Cancelar</string>
@@ -9,9 +9,9 @@
     <string name="category">Categorias</string>
     <string name="delete">Eliminar</string>
     <string name="edit">Editar</string>
-    <string name="add_category_expense">Agregar categoria</string>
+    <string name="add_category_expense">Agregar categoría</string>
     <string name="add">Agregar</string>
-    <string name="edit_category_expense">Editar categoria</string>
+    <string name="edit_category_expense">Editar categoría</string>
     <string name="no_expenses">Parece que aún no cargas tus gastos</string>
     <string name="update">Actualizar</string>
     <string name="permission_needed">Permisos necesarios</string>
@@ -25,4 +25,6 @@
     <string name="start1">El que sabe lo que gasta, sabe lo que tiene</string>
     <string name="budget">Presupuesto</string>
     <string name="app_name">Tu Saldo</string>
+    <string name="available">Disponible</string>
+    <string name="edit_expense">Editar gasto</string>
 </resources>

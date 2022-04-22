@@ -13,8 +13,8 @@ import com.sanmed.android.balance.R
 import com.sanmed.android.balance.databinding.FragmentCategoriesExpensesBinding
 import com.sanmed.android.balance.model.action.IAction
 import com.sanmed.android.balance.model.helpers.DialogHelper
-import com.sanmed.android.balance.view.add_category_expense.AddCategoryExpenseDialogFragmentHandler
-import com.sanmed.android.balance.view.diff.DiffExpense
+import com.sanmed.android.balance.view.add_edit_expense.AddEditExpenseDialogFragmentHandler
+import com.sanmed.android.balance.view.diff.DiffCategoryExpenseView
 import com.sanmed.android.balance.viewmodel.categories_expenses.CategoriesExpensesViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -23,7 +23,7 @@ class CategoriesExpensesFragment : Fragment() {
     val viewModel  by viewModels<CategoriesExpensesViewModel>()
     private lateinit var binding : FragmentCategoriesExpensesBinding
     private lateinit var adapterCategory : CategoryExpensesAdapter
-    private lateinit var categoryCategoryDialog:AddCategoryExpenseDialogFragmentHandler
+    private lateinit var categoryCategoryDialog:AddEditExpenseDialogFragmentHandler<ICategoryExpenseView>
 
 
     override fun onCreateView(
@@ -38,9 +38,9 @@ class CategoriesExpensesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapterCategory = CategoryExpensesAdapter( DiffExpense(),getOnEditCategoryAction())
+        adapterCategory = CategoryExpensesAdapter( DiffCategoryExpenseView(),getOnEditCategoryAction())
         binding.listExpensesRecyclerView.adapter = adapterCategory
-        categoryCategoryDialog = AddCategoryExpenseDialogFragmentHandler(this,viewModel.getAddExpenseViewModel())
+        categoryCategoryDialog = AddEditExpenseDialogFragmentHandler(this,viewModel.getAddExpenseViewModel())
         initSubscribers();
     }
 
@@ -80,12 +80,12 @@ class CategoriesExpensesFragment : Fragment() {
     private fun onShowCategoryExpenseDialog(addExpense : Boolean?) {
         if(addExpense == true) {
             showCategoryExpenseDialog();
-            viewModel.getAddExpenseViewModel().onAddCategoryExpenseCompleted()
+            viewModel.getAddExpenseViewModel().onAddExpenseCompleted()
         }
     }
 
     private fun showCategoryExpenseDialog() {
-        DialogHelper.showCategoryExpenseDialog(categoryCategoryDialog,this)
+        DialogHelper.showExpenseDialog(categoryCategoryDialog,this)
     }
 
     private fun onExpensesChanged(expens:List<ICategoryExpenseView?>) {

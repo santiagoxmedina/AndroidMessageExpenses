@@ -5,7 +5,7 @@ import com.sanmed.android.balance.view.summary.SummaryItemView
 import com.sanmed.android.balance.view.summary.SummaryItemViewType
 import com.sanmed.android.balance.view.utilities.CurrencyUtilities
 
-data class MonthExpensesUI(val month:String?="",val expenses:List<SummaryItemView>):ISummaryItemView {
+data class MonthExpensesView(val month:String?="", val expenses:List<SummaryItemView>):ISummaryItemView {
 
     val amount = expenses.sumOf { it.amount }
     val amountString = CurrencyUtilities.format(amount)
@@ -15,7 +15,7 @@ data class MonthExpensesUI(val month:String?="",val expenses:List<SummaryItemVie
     }
 
     override fun areItemsTheSame(newItem: ISummaryItemView): Boolean {
-        return if(newItem is MonthExpensesUI){
+        return if(newItem is MonthExpensesView){
             month == newItem.month
         }else{
             false
@@ -23,7 +23,7 @@ data class MonthExpensesUI(val month:String?="",val expenses:List<SummaryItemVie
     }
 
     override fun areContentsTheSame(newItem: ISummaryItemView): Boolean {
-        return if(newItem is MonthExpensesUI){
+        return if(newItem is MonthExpensesView){
             expenses == newItem.expenses
         }else{
             false

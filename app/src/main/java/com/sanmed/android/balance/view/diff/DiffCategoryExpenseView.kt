@@ -3,7 +3,7 @@ package com.sanmed.android.balance.view.diff
 import androidx.recyclerview.widget.DiffUtil
 import com.sanmed.android.balance.view.categories_expenses.ICategoryExpenseView
 
-class DiffExpense: DiffUtil.ItemCallback<ICategoryExpenseView?>() {
+class DiffCategoryExpenseView: DiffUtil.ItemCallback<ICategoryExpenseView?>() {
 
     override fun areItemsTheSame(oldItem: ICategoryExpenseView, newItem: ICategoryExpenseView): Boolean {
        return oldItem.getId() == newItem.getId()

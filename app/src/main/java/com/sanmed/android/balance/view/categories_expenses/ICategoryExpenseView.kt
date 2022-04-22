@@ -1,15 +1,12 @@
 package com.sanmed.android.balance.view.categories_expenses
 
+import com.sanmed.android.balance.view.expense.ExpenseView
+import com.sanmed.android.balance.view.expense.IExpenseView
 import java.math.BigDecimal
 
-interface ICategoryExpenseView {
-    fun  getAmount(): BigDecimal
+interface ICategoryExpenseView: IExpenseView {
     fun  getAmountString():String
-    fun  getName():String
     fun  getPercentage():Float
     fun  getPercentageString():String
     fun  getType():Int
-    fun  getId():String
-    fun setName(name: String)
-    fun setAmount(amount: BigDecimal)
 }

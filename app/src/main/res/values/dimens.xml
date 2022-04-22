@@ -6,6 +6,10 @@
     <dimen name="margin_3">15dp</dimen>
     <dimen name="margin_2">15dp</dimen>
     <dimen name="margin_1">5dp</dimen>
+    <dimen name="size_1">10dp</dimen>
+    <dimen name="size_2">20dp</dimen>
+    <dimen name="size_3">30dp</dimen>
+    <dimen name="size_4">40dp</dimen>
     <dimen name="radius_2">10dp</dimen>
     <dimen name="radius_1">5dp</dimen>
 </resources>

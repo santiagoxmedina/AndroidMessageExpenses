@@ -8,8 +8,11 @@ import com.sanmed.android.balance.model.repository.CategoryExpensesRepository
 import com.sanmed.android.balance.model.repository.ExpensesRepository
 import com.sanmed.android.balance.model.repository.ICategoryExpensesRepository
 import com.sanmed.android.balance.model.repository.IExpensesRepository
-import com.sanmed.android.balance.view.add_category_expense.IAddCategoryExpenseViewModel
-import com.sanmed.android.balance.viewmodel.add_category_expense.AddCategoryExpenseViewModel
+import com.sanmed.android.balance.viewmodel.add_edit_expense.IAddEditExpenseViewModel
+import com.sanmed.android.balance.view.categories_expenses.ICategoryExpenseView
+import com.sanmed.android.balance.view.expense.ExpenseView
+import com.sanmed.android.balance.viewmodel.add_edit_expense.AddEditCategoryExpenseViewModel
+import com.sanmed.android.balance.viewmodel.add_edit_expense.AddEditExpenseViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -22,11 +25,15 @@ abstract class AppModule {
 
     @Singleton
     @Binds
-    abstract fun bindIAddExpenseView(viewCategory: AddCategoryExpenseViewModel): IAddCategoryExpenseViewModel
+    abstract fun bindAddEditCategoryExpenseView(viewCategory: AddEditCategoryExpenseViewModel): IAddEditExpenseViewModel<ICategoryExpenseView>
 
     @Singleton
     @Binds
-    abstract fun bindICategoryExpensesRepository(repository:CategoryExpensesRepository): ICategoryExpensesRepository
+    abstract fun bindAddEditExpenseView(viewCategory: AddEditExpenseViewModel): IAddEditExpenseViewModel<ExpenseView>
+
+    @Singleton
+    @Binds
+    abstract fun bindICategoryExpensesRepository(repository: CategoryExpensesRepository): ICategoryExpensesRepository
 
     @Singleton
     @Binds

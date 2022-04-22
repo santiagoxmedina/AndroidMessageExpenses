@@ -9,10 +9,9 @@ class SummaryItemViewViewHolder(private val binding: ViewExpenseBinding) :
         item?.let {
             if(item is SummaryItemView){
                 item.apply {
-                    binding.name = name
-                    binding.amountString = amountString
-                    binding.dateString = dateString
-                    binding.executePendingBindings()
+                    binding.name.text = name
+                    binding.amount.text = amountString
+                    binding.date.text = dateString
                 }
             }
         }
